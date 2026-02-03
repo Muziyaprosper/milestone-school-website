@@ -15,7 +15,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
 </head>
-<body class="bg-gray-50">
+<body class="bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('assets/wallpaper.jpg');">
 
   <!-- Enhanced Header with Glass Morphism -->
   <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/90 supports-backdrop-blur:bg-white/95 shadow-soft">
@@ -199,9 +199,9 @@
             <div class="flex flex-col md:flex-row items-center gap-8">
               <div class="relative">
                 <div class="absolute inset-0 bg-white/20 rounded-full blur-xl"></div>
-                <img src="assets/Dr. Nene.jpg" alt="Photo of Dr Miranda Nene" class="relative w-48 h-48 rounded-full mx-auto border-4 border-white/30 object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="assets/Dr. Nene Profile.jpg" alt="Photo of Dr Miranda Nene" class="relative w-48 h-48 rounded-full mx-auto border-4 border-white/30 object-cover group-hover:scale-105 transition-transform duration-300">
               </div>
-              <div class="flex-1 text-center md:text-left">
+              <div id="dr-nene" class="flex-1 text-center md:text-left">
                 <h2 class="text-3xl md:text-4xl font-bold mb-2">
                   <span class="hover:text-secondary transition-colors">Dr. Miranda Nene</span>
                 </h2>
@@ -714,16 +714,17 @@
     <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform"></i>
   </button>
     
+<script>
+  const box = document.getElementById('dr-nene');
+  box.addEventListener('mouseenter', () => {
+    box.setAttribute("title", "Click to view more details about Dr Nene" )
+    
+  });
+  </script>
+
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
-  </script>
-
-  <script>
-    const msg = document.getElementById('dr-nene');
-    msg.addEventListener('mouseenter', () => {
-      msg.setAttribute('title','click to view more details about Dr. Nene.');
-    });
   </script>
 </body>
 </html>

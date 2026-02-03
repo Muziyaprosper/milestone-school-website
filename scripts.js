@@ -66,9 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
           current += increment;
           counter.textContent = Math.ceil(current);
           setTimeout(updateCounter, 20);
-        } else {
-          counter.textContent = target.toLocaleString();
-        }
+      } else {
+        counter.textContent = target.toLocaleString() + '+';
+      }
       };
       
       // Start counter when in viewport
@@ -245,6 +245,92 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Gallery Filter Functionality
+  function initGalleryFilters() {
+    const filterButtons = document.querySelectorAll('.gallery-filter');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    if (!filterButtons.length || !galleryItems.length) return;
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-gradient-to-r', 'from-primary', 'to-teal-500', 'text-white', 'shadow-lg');
+          btn.classList.add('bg-white', 'text-gray-700', 'shadow-soft');
+        });
+        button.classList.remove('bg-white', 'text-gray-700', 'shadow-soft');
+        button.classList.add('active', 'bg-gradient-to-r', 'from-primary', 'to-teal-500', 'text-white', 'shadow-lg');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        galleryItems.forEach(item => {
+          const category = item.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            item.style.display = 'block';
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+              item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 10);
+          } else {
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  }
+  
+  // Initialize gallery filters
+  initGalleryFilters();
+
+  // Hero Slideshow
+  function initSlideshow() {
+    const slideshow = document.getElementById('slideshow');
+    if (!slideshow) return;
+    
+    const images = [
+      'assets/pupils.jpg',
+      'assets/funding.jpg',
+      'assets/pupils-2.jpg',
+      'assets/sports.jpg',
+      'assets/cooking-3.jpg',
+      'assets/livingstone-1.jpg',
+      'assets/safariday.jpg'
+    ];
+    
+    // Preload images
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    
+    let currentIndex = 0;
+    slideshow.style.transition = 'transform 0.1s ease-in-out';
+    
+    setInterval(() => {
+      slideshow.style.transform = 'translateX(-100%)';
+      setTimeout(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        slideshow.src = images[currentIndex];
+        slideshow.style.transition = 'none';
+        slideshow.style.transform = 'translateX(100%)';
+        slideshow.offsetHeight;
+        slideshow.style.transition = 'transform 0.1s ease-in-out';
+        slideshow.style.transform = 'translateX(0)';
+      }, 0);
+    }, 5000);
+  }
+  
+  initSlideshow();
+
   // Active Navigation Link Highlighting
   const currentPage = window.location.pathname.split('/').pop();
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
@@ -342,8 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
         preloader.classList.add('opacity-0');
         setTimeout(() => {
           preloader.style.display = 'none';
-        }, 500);
-      }, 1000);
+        }, 150);
+      }, 250);
     });
   }
 });
