@@ -299,12 +299,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize gallery filters
   initGalleryFilters();
 
-  // Hero Slideshow - Optimized to only preload next image
+  // Hero Slideshow - Optimized to only preload next image (WebP support will be added after conversion)
   function initSlideshow() {
     const slideshow = document.getElementById('slideshow');
     const slideNext = document.getElementById('slide-next');
+    const slideNextSource = document.getElementById('slide-next-source');
+    const slideshowPicture = document.getElementById('slideshow-picture');
     if (!slideshow || !slideNext) return;
     
+    // Use JPG images (WebP will be added back after conversion)
     const images = [
       'assets/pupils.jpg',
       'assets/funding.jpg',
@@ -366,10 +369,22 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (!thumbnailWrapper || !video || !videoSrc) return;
       
-      // Set video source
-      const source = video.querySelector('source');
-      if (source) {
-        source.src = videoSrc;
+      // Set video sources (MP4 only for now, WebM will be added after conversion)
+      const sources = video.querySelectorAll('source');
+      if (sources.length >= 1) {
+        // Update MP4 source
+        sources[0].src = videoSrc;
+        sources[0].type = 'video/mp4';
+        // Remove WebM source if it exists (second source)
+        if (sources.length >= 2) {
+          sources[1].remove();
+        }
+      } else {
+        // No sources, create MP4 source
+        const mp4Source = document.createElement('source');
+        mp4Source.src = videoSrc;
+        mp4Source.type = 'video/mp4';
+        video.appendChild(mp4Source);
       }
       
       thumbnailWrapper.addEventListener('click', () => {
