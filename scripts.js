@@ -361,6 +361,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // Video Thumbnail Click-to-Play
   function initVideoThumbnails() {
     const videoContainers = document.querySelectorAll('.video-thumbnail-container');
+    let currentlyPlayingVideo = null;
+    
+    // Function to pause all videos except the one specified
+    function pauseAllVideos(exceptVideo = null) {
+      videoContainers.forEach(container => {
+        const video = container.querySelector('video');
+        if (video && video !== exceptVideo && !video.paused) {
+          video.pause();
+        }
+      });
+    }
     
     videoContainers.forEach(container => {
       const thumbnailWrapper = container.querySelector('.video-thumbnail-wrapper');
@@ -387,17 +398,46 @@ document.addEventListener('DOMContentLoaded', () => {
         video.appendChild(mp4Source);
       }
       
+      // Handle thumbnail click
       thumbnailWrapper.addEventListener('click', () => {
+        // Pause any currently playing video
+        pauseAllVideos();
+        
         // Hide thumbnail
         thumbnailWrapper.style.display = 'none';
         
         // Show and play video
         video.classList.remove('hidden');
         video.load(); // Load the video
+        currentlyPlayingVideo = video;
         video.play().catch(err => {
           console.log('Video autoplay prevented:', err);
+          currentlyPlayingVideo = null;
           // If autoplay fails, user can still click play button
         });
+      });
+      
+      // Handle video play event (when user clicks play button)
+      video.addEventListener('play', () => {
+        // If a different video is playing, pause it
+        if (currentlyPlayingVideo && currentlyPlayingVideo !== video) {
+          currentlyPlayingVideo.pause();
+        }
+        currentlyPlayingVideo = video;
+      });
+      
+      // Handle video pause event
+      video.addEventListener('pause', () => {
+        if (currentlyPlayingVideo === video) {
+          currentlyPlayingVideo = null;
+        }
+      });
+      
+      // Handle video end event
+      video.addEventListener('ended', () => {
+        if (currentlyPlayingVideo === video) {
+          currentlyPlayingVideo = null;
+        }
       });
     });
   }
