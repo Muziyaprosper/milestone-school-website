@@ -1,6 +1,31 @@
 /* custom.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 
+/* Accessibility: Skip to main content link */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  z-index: 9999;
+}
+
 /* Custom Animations */
 @keyframes wave {
   0%, 100% { transform: rotate(0deg); }
@@ -259,6 +284,26 @@ html {
   .modern-card {
     padding: 1.5rem;
   }
+}
+
+/* Video Thumbnail Styles */
+.video-thumbnail-container {
+  position: relative;
+}
+
+.video-thumbnail-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-thumbnail-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.video-thumbnail-wrapper:hover .play-button {
+  transform: scale(1.1);
 }
 
 /* Print Styles */

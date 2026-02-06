@@ -17,18 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (mobileMenuButton && mobileMenu) {
     mobileMenuButton.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
       const icon = mobileMenuButton.querySelector('i');
       icon.classList.toggle('fa-bars');
       icon.classList.toggle('fa-times');
+      
+      // Update ARIA attributes for accessibility
+      mobileMenuButton.setAttribute('aria-expanded', !isHidden);
+      mobileMenu.setAttribute('aria-hidden', isHidden);
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
         mobileMenu.classList.add('hidden');
-        mobileMenuButton.querySelector('i').classList.add('fa-bars');
-        mobileMenuButton.querySelector('i').classList.remove('fa-times');
+        const icon = mobileMenuButton.querySelector('i');
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
       }
     });
   }
@@ -291,10 +299,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize gallery filters
   initGalleryFilters();
 
-  // Hero Slideshow
+  // Hero Slideshow - Optimized to only preload next image
   function initSlideshow() {
     const slideshow = document.getElementById('slideshow');
-    if (!slideshow) return;
+    const slideNext = document.getElementById('slide-next');
+    if (!slideshow || !slideNext) return;
     
     const images = [
       'assets/pupils.jpg',
@@ -306,30 +315,79 @@ document.addEventListener('DOMContentLoaded', () => {
       'assets/safariday.jpg'
     ];
     
-    // Preload images
-    images.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-    
     let currentIndex = 0;
-    slideshow.style.transition = 'transform 0.1s ease-in-out';
+    let nextIndex = 1;
+    
+    // Preload only the next image
+    function preloadNext() {
+      const img = new Image();
+      img.src = images[nextIndex];
+    }
+    
+    // Preload first next image
+    preloadNext();
+    
+    slideshow.style.transition = 'transform 0.5s ease-in-out';
+    slideNext.style.transition = 'transform 0.5s ease-in-out';
     
     setInterval(() => {
+      // Slide current out
       slideshow.style.transform = 'translateX(-100%)';
+      // Slide next in
+      slideNext.src = images[nextIndex];
+      slideNext.style.transform = 'translateX(0)';
+      
       setTimeout(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        slideshow.src = images[currentIndex];
-        slideshow.style.transition = 'none';
-        slideshow.style.transform = 'translateX(100%)';
-        slideshow.offsetHeight;
-        slideshow.style.transition = 'transform 0.1s ease-in-out';
+        // Swap images
+        slideshow.src = images[nextIndex];
         slideshow.style.transform = 'translateX(0)';
-      }, 0);
+        slideNext.style.transform = 'translateX(100%)';
+        
+        // Update indices
+        currentIndex = nextIndex;
+        nextIndex = (nextIndex + 1) % images.length;
+        
+        // Preload next image
+        preloadNext();
+      }, 500);
     }, 5000);
   }
   
   initSlideshow();
+
+  // Video Thumbnail Click-to-Play
+  function initVideoThumbnails() {
+    const videoContainers = document.querySelectorAll('.video-thumbnail-container');
+    
+    videoContainers.forEach(container => {
+      const thumbnailWrapper = container.querySelector('.video-thumbnail-wrapper');
+      const video = container.querySelector('video');
+      const videoSrc = container.getAttribute('data-video-src');
+      
+      if (!thumbnailWrapper || !video || !videoSrc) return;
+      
+      // Set video source
+      const source = video.querySelector('source');
+      if (source) {
+        source.src = videoSrc;
+      }
+      
+      thumbnailWrapper.addEventListener('click', () => {
+        // Hide thumbnail
+        thumbnailWrapper.style.display = 'none';
+        
+        // Show and play video
+        video.classList.remove('hidden');
+        video.load(); // Load the video
+        video.play().catch(err => {
+          console.log('Video autoplay prevented:', err);
+          // If autoplay fails, user can still click play button
+        });
+      });
+    });
+  }
+  
+  initVideoThumbnails();
 
   // Active Navigation Link Highlighting
   const currentPage = window.location.pathname.split('/').pop();

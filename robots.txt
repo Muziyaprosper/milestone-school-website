@@ -1,0 +1,12 @@
+# robots.txt for Milestone School Website
+# https://milestoneschool.education
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas if they exist
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://milestoneschool.education/sitemap.xml
