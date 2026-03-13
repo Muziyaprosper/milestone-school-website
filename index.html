@@ -67,9 +67,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   
-  <!-- Preload critical resources -->
+  <!-- Preload only truly critical resources -->
   <link rel="preload" href="assets/logo.png" as="image">
-  <link rel="preload" href="assets/pupils.jpg" as="image">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" media="print" onload="this.media='all'">
@@ -95,25 +94,10 @@
   <!-- Scripts -->
   <script src="cookie-consent.js" defer></script>
   <script src="scripts.js" defer></script>
-  
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then((registration) => {
-            console.log('Service Worker registered:', registration.scope);
-          })
-          .catch((error) => {
-            console.log('Service Worker registration failed:', error);
-          });
-      });
-    }
-  </script>
 </head>
 
 
-<body class="bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('assets/bck.jpg');">
+<body class="home-page-bg bg-cover bg-center bg-no-repeat">
 
   <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">Skip to main content</a>
@@ -127,7 +111,7 @@
 
     <!-- Enhanced Header with Glass Morphism -->
 <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/90 supports-backdrop-blur:bg-white/95 shadow-soft" role="banner">
-  <nav class="container mx-auto px-4 sm:px-4 py-2" role="navigation" aria-label="Main navigation">
+  <nav class="container mx-auto px-4 sm:px-4 py-2" aria-label="Main navigation">
     <div class="flex items-center justify-between">
       
       <!-- Logo with Animation -->
@@ -138,7 +122,6 @@
                  class="relative h-12 w-12 object-contain transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110"
                  width="48" height="48"
                  loading="eager"
-                 fetchpriority="high"
                  decoding="async">
           </picture>
         </div>
@@ -151,10 +134,9 @@
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center space-x-0.5" role="menubar">
+      <div class="hidden lg:flex items-center space-x-0.5">
         <a href="index.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Home page">
           <i class="fas fa-home mr-1.8 text-xs" aria-hidden="true"></i>
           Home
@@ -163,7 +145,6 @@
         
         <a href="about.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to About Us page">
           <i class="fas fa-info-circle mr-1.8 text-xs" aria-hidden="true"></i>
           About Us
@@ -172,7 +153,6 @@
         
         <a href="academics.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Academics page">
           <i class="fas fa-graduation-cap mr-1.8 text-xs" aria-hidden="true"></i>
           Academics
@@ -181,7 +161,6 @@
         
         <a href="admissions.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Admissions page">
           <i class="fas fa-user-plus mr-1.8 text-xs" aria-hidden="true"></i>
           Admissions
@@ -190,7 +169,6 @@
         
         <a href="events.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Events page">
           <i class="fas fa-calendar-alt mr-1.8 text-xs" aria-hidden="true"></i>
           Events
@@ -199,7 +177,6 @@
         
         <a href="gallery.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Gallery page">
           <i class="fas fa-images mr-1.8 text-xs" aria-hidden="true"></i>
           Gallery
@@ -208,7 +185,6 @@
         
         <a href="staff.html" 
            class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           role="menuitem"
            aria-label="Navigate to Staff page">
           <i class="fas fa-users mr-1.8 text-xs" aria-hidden="true"></i>
           Staff
@@ -220,7 +196,6 @@
            class="ml-3 px-5 py-2 text-sm bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full 
                   shadow-hard hover:shadow-glow transform hover:-translate-y-0.5 transition-all duration-300 
                   hover:from-orange-400 hover:to-secondary"
-           role="menuitem"
            aria-label="Navigate to Contact page">
           Contact
         </a>
@@ -239,7 +214,6 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" 
          class="lg:hidden hidden mt-4 py-4 px-6 bg-white rounded-xl shadow-hard border border-gray-100 animate-slide-up"
-         role="menu"
          aria-labelledby="mobile-menu-button">
       <div class="space-y-2">
         <a href="index.html" 
@@ -348,63 +322,74 @@
           At Milestone School, we blend modern teaching methods with traditional values to provide holistic education that nurtures curiosity, discipline, and creativity in every learner.
         </p>
         
-        <div class="flex flex-wrap gap-4">
+        <div class="flex flex-wrap items-center gap-4 lg:flex-nowrap" data-hero-actions>
           <a href="admissions.html" 
-             class="px-8 py-3 bg-white text-primary font-bold rounded-full shadow-hard hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 group">
+             class="inline-flex shrink-0 items-center whitespace-nowrap px-8 py-3 bg-white text-primary font-bold rounded-full shadow-hard hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 group">
             Start Your Journey
             <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
           </a>
           
           <a href="about.html" 
-             class="px-8 py-3 bg-transparent border-2 border-white/50 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 group">
+             class="inline-flex shrink-0 items-center whitespace-nowrap px-8 py-3 bg-transparent border-2 border-white/50 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 group">
             <i class="fas fa-play-circle mr-2"></i>
             Explore Our Campus
           </a>
+
+          <a href="https://milestone.portal.com"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex shrink-0 items-center whitespace-nowrap px-8 py-3 bg-secondary text-white font-bold rounded-full shadow-hard hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 group">
+            <i class="fas fa-user-graduate mr-2"></i>
+            Student Portal
+            <i class="fas fa-arrow-up-right-from-square ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+          </a>
         </div>
-        
+
         <!-- Stats Counter -->
-        <div class="mt-12 grid grid-cols-3 gap-6">
-          <div class="text-center">
+        <div class="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-5 py-6 text-center shadow-hard backdrop-blur-sm">
             <div class="text-3xl md:text-4xl font-bold text-secondary mb-2 counter" data-target="400">0</div>
-            <p class="text-sm text-white/80">Students Enrolled</p>
+            <p class="text-sm font-medium tracking-wide text-white/80">Students Enrolled</p>
           </div>
-          <div class="text-center">
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-5 py-6 text-center shadow-hard backdrop-blur-sm">
             <div class="text-3xl md:text-4xl font-bold text-secondary mb-2 counter" data-target="35">0</div>
-            <p class="text-sm text-white/80">Qualified Staff</p>
+            <p class="text-sm font-medium tracking-wide text-white/80">Qualified Staff</p>
           </div>
-          <div class="text-center">
+          <div class="rounded-2xl border border-white/15 bg-white/10 px-5 py-6 text-center shadow-hard backdrop-blur-sm sm:col-span-2 lg:col-span-1">
             <div class="text-3xl md:text-4xl font-bold text-secondary mb-2 counter" data-target="17">0</div>
-            <p class="text-sm text-white/80">Years Excellence</p>
+            <p class="text-sm font-medium tracking-wide text-white/80">Years Excellence</p>
           </div>
         </div>
       </div>
 
       <!-- Right Content - 3D Image/Illustration -->
-      <div class="relative animate-slide-up delay-300">
-        <div class="relative overflow-hidden">
-          <div class="absolute -inset-4 bg-gradient-to-r from-secondary to-orange-400 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
+      <div class="relative isolate px-4 py-4 md:px-6 md:py-6 animate-slide-up delay-300">
+        <div class="relative z-0 overflow-hidden rounded-2xl">
+          <div class="absolute -inset-4 z-0 bg-gradient-to-r from-secondary to-orange-400 rounded-3xl blur-2xl opacity-30 animate-pulse"></div>
           <img id="slideshow"
-                 src="assets/pupils.jpg" 
+                 src="assets/pupils-hero.webp" 
                  alt="Milestone School Students"
-                 class="relative rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-0 w-full h-auto ease-in-out object-cover"
-                 width="800" height="600"
+                 class="relative z-10 rounded-2xl shadow-2xl w-full h-auto object-cover transition-opacity duration-700 ease-out"
+                 width="1400" height="900"
                  loading="eager"
-                 fetchpriority="high"
-                 onerror="this.src='assets/Milestone.jpg'">
+                 decoding="async"
+                 onerror="this.src='assets/pupils.jpg'">
           </picture>
 
           <img id="slide-next"
-                 src="assets/pupils.jpg"
-                 class="absolute inset-0 w-full h-auto object-cover rounded-2xl transition-transform duration-0 translate-x-full"
+                 src="assets/pupils-hero.webp"
+                 class="absolute inset-0 z-10 w-full h-auto object-cover rounded-2xl opacity-0 transition-opacity duration-700 ease-out pointer-events-none"
                  alt="Next Slide"
-                 width="800" height="600"
+                 width="1400" height="900"
                  loading="lazy"
-                 onerror="this.src='assets/Milestone.jpg'">
+                 decoding="async"
+                 aria-hidden="true"
+                 onerror="this.src='assets/pupils.jpg'">
           </picture>
         </div>
         
         <!-- Floating Badges -->
-        <div class="absolute -top-4 -right-4 bg-white p-4 rounded-2xl shadow-hard animate-float">
+        <div class="absolute z-30 top-0 right-0 bg-white p-4 rounded-2xl shadow-hard animate-float">
           <div class="flex items-center space-x-3">
             <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
               <i class="fas fa-award text-primary text-xl"></i>
@@ -416,7 +401,7 @@
           </div>
         </div>
         
-        <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-2xl shadow-hard animate-float delay-1000">
+        <div class="absolute z-30 bottom-0 left-0 bg-white p-4 rounded-2xl shadow-hard animate-float delay-1000">
           <div class="flex items-center space-x-3">
             <div class="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
               <i class="fas fa-users text-accent text-xl"></i>
@@ -499,7 +484,7 @@
       <section id="about" class="py-20 relative overflow-hidden bg-gradient-to-br from-primary via-teal-600 to-accent">
         <!-- Background Pattern -->
         <div class="absolute inset-0 opacity-10">
-          <div class="absolute inset-0" style="background-image: url('assets/stem.jpg'); background-size: cover; background-position: center; filter: blur(2px);"></div>
+          <div class="absolute inset-0" style="background-image: url('assets/stem.webp'); background-size: cover; background-position: center; filter: blur(2px);"></div>
         </div>
         
         <div class="container mx-auto text-center px-6 relative z-10">
@@ -626,11 +611,12 @@
 <div class="relative max-w-xl group">
   <div class="absolute -inset-2 bg-gradient-to-r from-primary to-teal-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
   <img
-      src="assets/school.jpg"
+      src="assets/school.webp"
       alt="Milestone school campus"
       class="relative shadow-hard w-200px h-100px object-cover transform group-hover:scale-105 transition-transform duration-500"
-      width="600" height="400"
+      width="1200" height="900"
       loading="lazy"
+      decoding="async"
     >
   </picture>
 </div>
@@ -680,9 +666,9 @@
     our learning environment.
   </p>
 
-  <div class="relative w-full max-w-2xl mx-auto overflow-hidden shadow-hard rounded-2xl video-thumbnail-container" data-video-src="assets/milestone.mp4">
+  <div class="relative w-full max-w-2xl mx-auto overflow-hidden shadow-hard rounded-2xl video-thumbnail-container" data-video-src="assets/milestone-optimized.mp4">
     <div class="video-thumbnail-wrapper relative w-full cursor-pointer group">
-      <img src="assets/milestone-thumb.jpg" alt="Milestone School Video Thumbnail" class="w-full h-auto rounded-2xl" width="800" height="450" loading="lazy" onerror="this.src='assets/pupils.jpg'">
+      <img src="assets/milestone-thumb.jpg" alt="Milestone School Video Thumbnail" class="w-full h-auto rounded-2xl" width="1280" height="960" loading="lazy" decoding="async" onerror="this.src='assets/pupils-hero.webp'">
       <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors rounded-2xl"></div>
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform shadow-2xl">
@@ -690,8 +676,8 @@
         </div>
       </div>
     </div>
-    <video class="hidden w-full h-auto rounded-2xl" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" preload="none">
-      <source src="assets/milestone.mp4" type="video/mp4">
+    <video class="hidden w-full h-auto rounded-2xl" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" preload="none" poster="assets/milestone-thumb.jpg" width="1280" height="960">
+      <source src="assets/milestone-optimized.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -704,17 +690,17 @@
                 <i class="fas fa-play-circle text-white text-2xl"></i>
               </div>
   <!-- Heading -->
-  <h2 class="text-3xl font-bold text-primary mb-6">Watch Our School in Action</h2>
+  <h2 class="text-3xl font-bold text-primary mb-6">Reading in Action</h2>
 
   <!-- Optional Description -->
   <p class="text-gray-700 leading-relaxed text-lg mb-8 max-w-2xl mx-auto">
-    Take a closer look at Milestone School through this short video and see how we nurture creativity, learning, and growth every day.
+    Watch our learners engage with literacy activities and reading programs.
   </p>
 
   <!-- Video -->
-  <div class="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl shadow-hard video-thumbnail-container" data-video-src="assets/Milestonevideo.mp4">
+  <div class="relative w-full max-w-6xl mx-auto overflow-hidden rounded-2xl shadow-hard video-thumbnail-container" data-video-src="assets/Milestonevideo-optimized.mp4">
     <div class="video-thumbnail-wrapper relative w-full cursor-pointer group">
-      <img src="assets/Milestonevideo-thumb.jpg" alt="Milestone School Video Thumbnail" class="w-full h-auto rounded-2xl" width="800" height="450" loading="lazy" onerror="this.src='assets/pupils.jpg'">
+      <img src="assets/Milestonevideo-thumb.jpg" alt="Milestone School Video Thumbnail" class="w-full h-auto rounded-2xl" width="852" height="480" loading="lazy" decoding="async" onerror="this.src='assets/pupils-hero.webp'">
       <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors rounded-2xl"></div>
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="w-24 h-24 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform shadow-2xl">
@@ -722,8 +708,8 @@
         </div>
       </div>
     </div>
-    <video class="hidden w-full h-auto rounded-2xl" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" preload="none">
-      <source src="assets/Milestonevideo.mp4" type="video/mp4">
+    <video class="hidden w-full h-auto rounded-2xl" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" preload="none" poster="assets/Milestonevideo-thumb.jpg" width="852" height="480">
+      <source src="assets/Milestonevideo-optimized.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </div>
@@ -800,33 +786,6 @@
             </div>
           </div>
 
-          <!-- Video Section -->
-          <div data-aos="fade-up" data-aos-delay="300" class="text-center">
-            <div class="bg-white p-8 rounded-2xl shadow-soft border border-gray-100 max-w-4xl mx-auto mb-20">
-              <div class="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-2xl flex items-center justify-center mb-6 mx-auto">
-                <i class="fas fa-play-circle text-white text-2xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-4">Reading in Action</h3>
-              <p class="text-gray-600 mb-8">Watch our learners engage with literacy activities and reading programs</p>
-              <div class="relative w-full max-w-2xl mx-auto overflow-hidden shadow-hard rounded-2xl video-thumbnail-container" data-video-src="assets/milestone.mp4">
-                <div class="video-thumbnail-wrapper relative w-full cursor-pointer group">
-                  <img src="assets/milestone-thumb.jpg" alt="Reading in Action Video Thumbnail" class="w-full h-auto rounded-2xl" width="800" height="450" loading="lazy" onerror="this.src='assets/reading.jpg'">
-                  <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors rounded-2xl"></div>
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform shadow-2xl">
-                      <i class="fas fa-play text-primary text-3xl ml-1"></i>
-                    </div>
-                  </div>
-                </div>
-                <video class="hidden w-full h-auto rounded-2xl" controls controlsList="nodownload noremoteplayback" disablePictureInPicture oncontextmenu="return false" preload="none">
-                  <source src="assets/milestone.webm" type="video/webm">
-                  <source src="assets/milestone.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p class="text-sm text-gray-500 mt-4">More reading videos available in our <a href="gallery.html?filter=literacy" class="text-primary hover:underline">Literacy Gallery</a></p>
-            </div>
-          </div>
         </div>
 
            <h2 data-aos="fade-up" class="text-primary text-4xl md:text-5xl font-bold mb-4 text-center">School Lunch Program</h2>
@@ -1018,216 +977,170 @@
         </div>
       </section>
 
-    </main>
-
-    <section class="bg-gradient-to-br from-primary via-teal-600 to-accent text-white py-16 relative overflow-hidden">
-      <!-- Decorative Elements -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-      </div>
-      
-  <div class="container mx-auto px-6 relative z-10">
-
-    <!-- Top Section: Contact & WhatsApp -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-
-      <!-- Contact Details -->
-      <div class="text-center md:text-left bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-        <div class="flex items-center justify-center md:justify-start mb-4">
-          <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-            <i class="fas fa-map-marker-alt text-white text-xl"></i>
+    </main>  <!-- Footer Section -->
+  <section class="bg-gradient-to-br from-primary via-teal-600 to-accent text-white py-16 relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    </div>
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="grid gap-8 lg:grid-cols-3 mb-12">
+        <div class="text-center md:text-left bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-start mb-4">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-map-marker-alt text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Get in Touch</h2>
           </div>
-          <h2 class="text-2xl font-bold">
-            Get in Touch
-          </h2>
+
+          <div class="space-y-3 text-gray-100">
+            <p class="flex items-center justify-center md:justify-start">
+              <i class="fas fa-home mr-3 text-secondary"></i>
+              House No. 31 Holly Street, <span class="text-secondary font-semibold ml-1">Kabwe</span>, Zambia
+            </p>
+
+            <p class="flex items-center justify-center md:justify-start">
+              <i class="fas fa-phone mr-3 text-secondary"></i>
+              <span class="text-secondary font-semibold">+260 978 443 323</span>
+            </p>
+
+            <p class="flex items-center justify-center md:justify-start break-all md:break-normal">
+              <i class="fas fa-envelope mr-3 text-secondary"></i>
+              <a href="mailto:milestoneschool.education@gmail.com" class="text-secondary hover:text-yellow-300 transition-colors underline">
+                milestoneschool.education@gmail.com
+              </a>
+            </p>
+          </div>
+
+          <a href="https://wa.me/260972712158?text=Hello%20Milestone%20School%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-300">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span>Contact Us on WhatsApp</span>
+          </a>
         </div>
 
-        <div class="space-y-3 text-gray-100">
-          <p class="flex items-center justify-center md:justify-start">
-            <i class="fas fa-home mr-3 text-secondary"></i>
-            House No. 31 Holly Street, <span class="text-secondary font-semibold ml-1">Kabwe</span>, Zambia
+        <div class="text-center bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center mb-4">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-file-download text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Ready to Join Us?</h2>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Download our application form and begin your journey with Milestone School today.
           </p>
-
-          <p class="flex items-center justify-center md:justify-start">
-            <i class="fas fa-phone mr-3 text-secondary"></i>
-            <span class="text-secondary font-semibold">+260 978 443 323</span>
-          </p>
-
-          <p class="flex items-center justify-center md:justify-start">
-            <i class="fas fa-envelope mr-3 text-secondary"></i>
-            <a 
-              href="mailto:milestoneschool.education@gmail.com" 
-              class="text-secondary hover:text-yellow-300 transition-colors underline"
-            >
-              milestoneschool.education@gmail.com
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="assets/Milestone School Application Form.pdf" download class="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
+              <i class="fas fa-download"></i>
+              <span>Download Application Form</span>
             </a>
+            <a href="contact.html" class="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20">
+              <i class="fas fa-envelope"></i>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right max-w-none bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-end mb-4">
+            <h2 class="text-2xl font-bold">Need Quick Help?</h2>
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center ml-3">
+              <i class="fas fa-question-circle text-white text-xl"></i>
+            </div>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Chat with our team directly on WhatsApp for admissions, enquiries, or general information. We're here to help!
           </p>
-        </div>
-
-        <a 
-          href="https://wa.me/260972712158?text=Hello%20Milestone%20School%2C%20I%20would%20like%20to%20make%20an%20enquiry."
-          target="_blank"
-          class="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-300"
-        >
-          <i class="fab fa-whatsapp text-xl"></i>
-          <span>Contact Us on WhatsApp</span>
-        </a>
-      </div>
-
-      <!-- Quick WhatsApp Prompt -->
-      <div class="text-center md:text-right max-w-md bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-        <div class="flex items-center justify-center md:justify-end mb-4">
-          <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center ml-3">
-            <i class="fas fa-question-circle text-white text-xl"></i>
+          <div class="flex items-center justify-center md:justify-end text-secondary">
+            <i class="fas fa-clock mr-2"></i>
+            <span class="font-semibold">Response within 24 hours</span>
           </div>
-          <h2 class="text-2xl font-bold">
-            Need Quick Help?
-          </h2>
-        </div>
-        <p class="text-gray-100 mb-6 text-lg">
-          Chat with our team directly on WhatsApp for admissions, enquiries, or general information. We're here to help!
-        </p>
-        <div class="flex items-center justify-center md:justify-end text-secondary">
-          <i class="fas fa-clock mr-2"></i>
-          <span class="font-semibold">Response within 24 hours</span>
         </div>
       </div>
-
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-link text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Quick Links</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-gray-100">
+            <a href="index.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-home mr-2"></i>
+              <span>Home</span>
+            </a>
+            <a href="admissions.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-user-plus mr-2"></i>
+              <span>Admissions</span>
+            </a>
+            <a href="staff.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-users mr-2"></i>
+              <span>Staff</span>
+            </a>
+            <a href="events.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-calendar-alt mr-2"></i>
+              <span>Events</span>
+            </a>
+            <a href="gallery.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-images mr-2"></i>
+              <span>Gallery</span>
+            </a>
+            <a href="contact.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-envelope mr-2"></i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-share-alt text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Follow Us</h2>
+          </div>
+          <p class="text-gray-100 mb-6">Stay connected with us on social media for updates, news, and events.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.me/260978443323" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/20 pt-8">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <p class="text-gray-100 text-sm">Accredited by:</p>
+          <div class="flex justify-center md:justify-start gap-6">
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.exams-council.org.zm/wp-content/uploads/2025/03/cropped-cropped-ECZ-logo-27-05-2024-01-150x150.jpg" alt="Examination Council of Zambia" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.edu.gov.zm/wp-content/uploads/2024/06/edu-loogo2-e1718996036101.png" alt="Ministry of Education" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <!-- Middle Section: Quick Links & Social -->
-    <div class="grid md:grid-cols-2 gap-8 mb-12">
-
-      <!-- Quick Links -->
-      <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-        <div class="flex items-center mb-6">
-          <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-            <i class="fas fa-link text-white text-xl"></i>
-          </div>
-          <h2 class="text-2xl font-bold">
-            Quick Links
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 text-gray-100">
-          <a href="index.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-home mr-2"></i>
-            <span>Home</span>
-          </a>
-          <a href="admissions.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-user-plus mr-2"></i>
-            <span>Admissions</span>
-          </a>
-          <a href="staff.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-users mr-2"></i>
-            <span>Staff</span>
-          </a>
-          <a href="events.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-calendar-alt mr-2"></i>
-            <span>Events</span>
-          </a>
-          <a href="gallery.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-images mr-2"></i>
-            <span>Gallery</span>
-          </a>
-          <a href="contact.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-            <i class="fas fa-envelope mr-2"></i>
-            <span>Contact</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Social Links -->
-      <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-        <div class="flex items-center mb-6">
-          <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-            <i class="fas fa-share-alt text-white text-xl"></i>
-          </div>
-          <h2 class="text-2xl font-bold">
-            Follow Us
-          </h2>
-        </div>
-
-        <p class="text-gray-100 mb-6">Stay connected with us on social media for updates, news, and events.</p>
-
-        <div class="flex flex-wrap gap-4">
-          <a 
-            href="https://www.facebook.com/share/1CVBoLNmru/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Visit our Facebook page"
-            class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform"
-          >
-            <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-          </a>
-
-          <a 
-            href="https://wa.me/260978443323" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            aria-label="Contact us on WhatsApp"
-            class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform"
-          >
-            <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Visit our TikTok page" class="group w-14 h-14 bg-white/10 hover:bg-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-            <i class="fab fa-tiktok text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram page" class="group w-14 h-14 bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-            <i class="fab fa-instagram text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-          </a>
-
-          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Visit our YouTube channel" class="group w-14 h-14 bg-white/10 hover:bg-red-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-            <i class="fab fa-youtube text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-          </a>
-
-        </div>
-      </div>
-
+  </section>
+  <!-- Footer Bottom -->
+  <div class="bg-gray-900 py-6 border-t border-gray-700">
+    <div class="container mx-auto px-6">
+      <p class="text-center text-gray-300 text-sm font-medium">
+        &copy; <span id="date"></span>
+        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>.
+        All Rights Reserved. Developed by
+        <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" rel="noopener noreferrer" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
+      </p>
     </div>
-
-    <!-- Bottom Section: Accreditation -->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/20 pt-8">
-
-      <div class="flex flex-col md:flex-row items-center gap-6">
-        <p class="text-gray-100 text-sm">Accredited by:</p>
-        <div class="flex justify-center md:justify-start gap-6">
-          <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-            <img src="https://www.exams-council.org.zm/wp-content/uploads/2025/03/cropped-cropped-ECZ-logo-27-05-2024-01-150x150.jpg" alt="Examination Council of Zambia" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
-          </div>
-          <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-            <img src="https://www.edu.gov.zm/wp-content/uploads/2024/06/edu-loogo2-e1718996036101.png" alt="Ministry of Education" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
-          </div>
-        </div>
-      </div>
-
-    </div>
-
   </div>
-</section>
-
-<!-- Footer Bottom -->
-<div class="bg-gray-900 py-6 border-t border-gray-700">
-  <div class="container mx-auto px-6">
-    <p class="text-center text-gray-300 text-sm font-medium">
-      &copy; <span id="date"></span> 
-      <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>. 
-      All Rights Reserved. Developed by 
-      <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
-    </p>
-  </div>
-</div>
-
-<!-- Back to Top Button -->
-<button id="scrollTopBtn" 
-        class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group"
-        aria-label="Scroll to top">
-  <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
-</button>
+  <!-- Back to Top Button -->
+  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
+  </button>
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 </body>
 </html>
+

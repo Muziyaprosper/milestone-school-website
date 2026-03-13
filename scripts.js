@@ -1,15 +1,49 @@
 // scripts.js - Enhanced with modern features
 document.addEventListener('DOMContentLoaded', () => {
+  const PORTAL_URL = 'https://milestone.portal.com';
+  const COOKIE_CONSENT_SCRIPT = 'cookie-consent.js';
+  let preloaderHidden = false;
+
+  function ensureCookieConsentScript() {
+    if (window.CookieConsent || document.querySelector(`script[src="${COOKIE_CONSENT_SCRIPT}"]`)) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = COOKIE_CONSENT_SCRIPT;
+    script.defer = true;
+    document.head.appendChild(script);
+  }
+
+  function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+
+    const startRegistration = () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startRegistration);
+    } else {
+      setTimeout(startRegistration, 1200);
+    }
+  }
+
   // Initialize AOS
-  AOS.init({
-    duration: 800,
-    once: true,
-    mirror: false,
-    offset: 100
-  });
+  if (window.AOS) {
+    AOS.init({
+      duration: 800,
+      once: true,
+      mirror: false,
+      offset: 100
+    });
+  }
 
   // Set current year
-  document.getElementById('date').textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('date');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 
   // Mobile Menu Toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -20,12 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
       const icon = mobileMenuButton.querySelector('i');
-      icon.classList.toggle('fa-bars');
-      icon.classList.toggle('fa-times');
+      if (icon) {
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+      }
       
       // Update ARIA attributes for accessibility
-      mobileMenuButton.setAttribute('aria-expanded', !isHidden);
-      mobileMenu.setAttribute('aria-hidden', isHidden);
+      mobileMenuButton.setAttribute('aria-expanded', String(isHidden));
+      mobileMenu.setAttribute('aria-hidden', String(!isHidden));
     });
     
     // Close menu when clicking outside
@@ -33,13 +69,224 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!mobileMenu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
         mobileMenu.classList.add('hidden');
         const icon = mobileMenuButton.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
+        if (icon) {
+          icon.classList.add('fa-bars');
+          icon.classList.remove('fa-times');
+        }
         mobileMenuButton.setAttribute('aria-expanded', 'false');
         mobileMenu.setAttribute('aria-hidden', 'true');
       }
     });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || mobileMenu.classList.contains('hidden')) return;
+      mobileMenu.classList.add('hidden');
+      const icon = mobileMenuButton.querySelector('i');
+      if (icon) {
+        icon.classList.add('fa-bars');
+        icon.classList.remove('fa-times');
+      }
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenuButton.focus();
+    });
   }
+
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-hard transform translate-x-full opacity-0 transition-all duration-500 ${
+      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+    }`;
+    toast.innerHTML = `
+      <div class="flex items-center space-x-3">
+        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+        <span>${message}</span>
+      </div>
+    `;
+
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+      toast.classList.remove('translate-x-full', 'opacity-0');
+      toast.classList.add('translate-x-0', 'opacity-100');
+    }, 10);
+
+    setTimeout(() => {
+      toast.classList.remove('translate-x-0', 'opacity-100');
+      toast.classList.add('translate-x-full', 'opacity-0');
+      setTimeout(() => toast.remove(), 500);
+    }, 3000);
+  }
+
+  function applyExternalLinkSecurity() {
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      const existingRel = link.getAttribute('rel') || '';
+      const relTokens = new Set(existingRel.split(/\s+/).filter(Boolean));
+      relTokens.add('noopener');
+      relTokens.add('noreferrer');
+      link.setAttribute('rel', Array.from(relTokens).join(' '));
+    });
+  }
+
+  function initPlaceholderLinks() {
+    document.querySelectorAll('a[href="#"]').forEach((link) => {
+      const label = link.getAttribute('aria-label') || link.textContent.trim() || 'This link';
+      link.setAttribute('role', 'button');
+      link.setAttribute('aria-disabled', 'true');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        showToast(`${label} will be updated soon. Use WhatsApp or the portal for assistance.`, 'error');
+      });
+    });
+  }
+
+  function injectPortalLinks() {
+    const desktopNav = document.querySelector('header .hidden.lg\\:flex, header .hidden.md\\:flex');
+    const existingDesktopPortalLink = desktopNav
+      ? desktopNav.querySelector(`a[href="${PORTAL_URL}"], a[href="${PORTAL_URL}/"], .portal-nav-link`)
+      : null;
+    if (existingDesktopPortalLink) {
+      existingDesktopPortalLink.classList.add('portal-nav-link');
+    }
+    if (desktopNav && !existingDesktopPortalLink) {
+      const portalLink = document.createElement('a');
+      portalLink.href = PORTAL_URL;
+      portalLink.target = '_blank';
+      portalLink.className = desktopNav.className.includes('lg:flex')
+        ? 'portal-nav-link nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300 portal-nav-item'
+        : 'portal-nav-link px-4 py-2 text-sm font-semibold text-gray-700 hover:text-primary transition-colors duration-300';
+      portalLink.innerHTML = desktopNav.className.includes('lg:flex')
+        ? '<i class="fas fa-user-graduate mr-1.8 text-xs" aria-hidden="true"></i>Student Portal<span class="nav-underline"></span>'
+        : 'Student Portal';
+
+      const contactButton = desktopNav.querySelector('a[href="contact.html"]');
+      if (contactButton && desktopNav.className.includes('lg:flex')) {
+        desktopNav.insertBefore(portalLink, contactButton);
+      } else {
+        desktopNav.appendChild(portalLink);
+      }
+    }
+
+    const mobileMenuEl = document.getElementById('mobile-menu');
+    const existingMobilePortalLink = mobileMenuEl
+      ? mobileMenuEl.querySelector(`a[href="${PORTAL_URL}"], a[href="${PORTAL_URL}/"], .portal-mobile-link`)
+      : null;
+    if (existingMobilePortalLink) {
+      existingMobilePortalLink.classList.add('portal-mobile-link');
+    }
+    if (mobileMenuEl && !existingMobilePortalLink) {
+      const mobilePortalLink = document.createElement('a');
+      mobilePortalLink.href = PORTAL_URL;
+      mobilePortalLink.target = '_blank';
+      mobilePortalLink.className = mobileMenuEl.querySelector('.mobile-nav-link')
+        ? 'portal-mobile-link mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors'
+        : 'portal-mobile-link block px-4 py-2 text-gray-700 hover:bg-gray-100';
+      mobilePortalLink.innerHTML = mobileMenuEl.querySelector('.mobile-nav-link')
+        ? '<i class="fas fa-user-graduate w-5 text-center" aria-hidden="true"></i><span>Student Portal</span>'
+        : 'Student Portal';
+      mobileMenuEl.appendChild(mobilePortalLink);
+    }
+  }
+
+  function setFieldState(field, errorEl, message = '') {
+    if (!field || !errorEl) return;
+    field.setAttribute('aria-invalid', message ? 'true' : 'false');
+    errorEl.textContent = message;
+  }
+
+  function initAdmissionsForm() {
+    const form = document.getElementById('admissions-enquiry-form');
+    if (!form) return;
+
+    const statusEl = document.getElementById('admissions-form-status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const fields = [
+        { name: 'guardianName', label: 'Parent or guardian name' },
+        { name: 'learnerName', label: 'Learner name' },
+        { name: 'gradeLevel', label: 'Preferred grade' },
+        { name: 'phoneNumber', label: 'Phone number' },
+        { name: 'message', label: 'Admissions enquiry' }
+      ];
+
+      let hasError = false;
+
+      fields.forEach(({ name, label }) => {
+        const field = form.elements[name];
+        const errorEl = form.querySelector(`[data-error-for="${name}"]`);
+        const value = String(formData.get(name) || '').trim();
+        if (!value) {
+          hasError = true;
+          setFieldState(field, errorEl, `${label} is required.`);
+        } else {
+          setFieldState(field, errorEl);
+        }
+      });
+
+      const emailField = form.elements.emailAddress;
+      const emailError = form.querySelector('[data-error-for="emailAddress"]');
+      const emailValue = String(formData.get('emailAddress') || '').trim();
+      if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        hasError = true;
+        setFieldState(emailField, emailError, 'Enter a valid email address or leave this field empty.');
+      } else {
+        setFieldState(emailField, emailError);
+      }
+
+      if (hasError) {
+        if (statusEl) {
+          statusEl.className = 'status-message error';
+          statusEl.textContent = 'Please correct the highlighted fields before continuing.';
+        }
+        return;
+      }
+
+      const message = [
+        'Hello Milestone School, I would like admissions guidance.',
+        `Parent/Guardian: ${formData.get('guardianName')}`,
+        `Learner: ${formData.get('learnerName')}`,
+        `Preferred Grade: ${formData.get('gradeLevel')}`,
+        `Phone: ${formData.get('phoneNumber')}`,
+        `Email: ${emailValue || 'Not provided'}`,
+        `Message: ${formData.get('message')}`
+      ].join('\n');
+
+      if (statusEl) {
+        statusEl.className = 'status-message success';
+        statusEl.textContent = 'Your enquiry is ready. We are opening WhatsApp with your admissions message.';
+      }
+
+      window.open(`https://wa.me/260978443323?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+      form.reset();
+    });
+  }
+
+  applyExternalLinkSecurity();
+  initPlaceholderLinks();
+  injectPortalLinks();
+  initAdmissionsForm();
+  ensureCookieConsentScript();
+  registerServiceWorker();
+
+  function hidePreloader() {
+    if (preloaderHidden) return;
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    preloaderHidden = true;
+    preloader.classList.add('opacity-0', 'pointer-events-none');
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 180);
+    document.body.classList.add('loaded');
+  }
+
+  // Hide the loader as soon as the DOM is ready instead of waiting for all media.
+  hidePreloader();
+  window.addEventListener('load', hidePreloader, { once: true });
+  window.setTimeout(hidePreloader, 1800);
 
   // Back to Top Button
   const scrollTopBtn = document.getElementById('scrollTopBtn');
@@ -253,73 +500,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Gallery Filter Functionality
-  function initGalleryFilters() {
-    const filterButtons = document.querySelectorAll('.gallery-filter');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    if (!filterButtons.length || !galleryItems.length) return;
-    
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Update active state
-        filterButtons.forEach(btn => {
-          btn.classList.remove('active', 'bg-gradient-to-r', 'from-primary', 'to-teal-500', 'text-white', 'shadow-lg');
-          btn.classList.add('bg-white', 'text-gray-700', 'shadow-soft');
-        });
-        button.classList.remove('bg-white', 'text-gray-700', 'shadow-soft');
-        button.classList.add('active', 'bg-gradient-to-r', 'from-primary', 'to-teal-500', 'text-white', 'shadow-lg');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        galleryItems.forEach(item => {
-          const category = item.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            item.style.display = 'block';
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-              item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-              item.style.opacity = '1';
-              item.style.transform = 'scale(1)';
-            }, 10);
-          } else {
-            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            item.style.opacity = '0';
-            item.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-              item.style.display = 'none';
-            }, 300);
-          }
-        });
-      });
-    });
-  }
-  
-  // Initialize gallery filters
-  initGalleryFilters();
-
-  // Hero Slideshow - Optimized to only preload next image (WebP support will be added after conversion)
+  // Hero Slideshow - use a stable crossfade so the hero stays centered and polished.
   function initSlideshow() {
     const slideshow = document.getElementById('slideshow');
     const slideNext = document.getElementById('slide-next');
-    const slideNextSource = document.getElementById('slide-next-source');
-    const slideshowPicture = document.getElementById('slideshow-picture');
     if (!slideshow || !slideNext) return;
     
-    // Use JPG images (WebP will be added back after conversion)
+    // Use lighter WebP slideshow assets on the homepage.
     const images = [
-      'assets/pupils.jpg',
-      'assets/funding.jpg',
-      'assets/pupils-2.jpg',
-      'assets/sports.jpg',
-      'assets/cooking-3.jpg',
-      'assets/livingstone-1.jpg',
-      'assets/safariday.jpg'
+      'assets/pupils-hero.webp',
+      'assets/funding.webp',
+      'assets/pupils-2.webp',
+      'assets/sports.webp',
+      'assets/cooking-3.webp',
+      'assets/livingstone-1.webp',
+      'assets/safariday.webp'
     ];
     
-    let currentIndex = 0;
     let nextIndex = 1;
+    let isTransitioning = false;
     
     // Preload only the next image
     function preloadNext() {
@@ -330,29 +529,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Preload first next image
     preloadNext();
     
-    slideshow.style.transition = 'transform 0.5s ease-in-out';
-    slideNext.style.transition = 'transform 0.5s ease-in-out';
-    
     setInterval(() => {
-      // Slide current out
-      slideshow.style.transform = 'translateX(-100%)';
-      // Slide next in
+      if (isTransitioning) return;
+      isTransitioning = true;
+
       slideNext.src = images[nextIndex];
-      slideNext.style.transform = 'translateX(0)';
-      
+      slideNext.alt = `Milestone School slideshow image ${nextIndex + 1}`;
+
+      requestAnimationFrame(() => {
+        slideNext.classList.remove('opacity-0');
+        slideNext.classList.add('opacity-100');
+        slideshow.classList.remove('opacity-100');
+        slideshow.classList.add('opacity-0');
+      });
+
       setTimeout(() => {
-        // Swap images
         slideshow.src = images[nextIndex];
-        slideshow.style.transform = 'translateX(0)';
-        slideNext.style.transform = 'translateX(100%)';
-        
-        // Update indices
-        currentIndex = nextIndex;
+        slideshow.alt = slideNext.alt;
+        slideshow.classList.remove('opacity-0');
+        slideshow.classList.add('opacity-100');
+        slideNext.classList.remove('opacity-100');
+        slideNext.classList.add('opacity-0');
+
         nextIndex = (nextIndex + 1) % images.length;
-        
-        // Preload next image
         preloadNext();
-      }, 500);
+        isTransitioning = false;
+      }, 700);
     }, 5000);
   }
   
@@ -380,26 +582,25 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (!thumbnailWrapper || !video || !videoSrc) return;
       
-      // Set video sources (MP4 only for now, WebM will be added after conversion)
-      const sources = video.querySelectorAll('source');
-      if (sources.length >= 1) {
-        // Update MP4 source
-        sources[0].src = videoSrc;
-        sources[0].type = 'video/mp4';
-        // Remove WebM source if it exists (second source)
-        if (sources.length >= 2) {
-          sources[1].remove();
-        }
-      } else {
-        // No sources, create MP4 source
-        const mp4Source = document.createElement('source');
-        mp4Source.src = videoSrc;
-        mp4Source.type = 'video/mp4';
-        video.appendChild(mp4Source);
-      }
-      
       // Handle thumbnail click
       thumbnailWrapper.addEventListener('click', () => {
+        if (!video.dataset.loaded) {
+          const sources = video.querySelectorAll('source');
+          if (sources.length >= 1) {
+            sources[0].src = videoSrc;
+            sources[0].type = 'video/mp4';
+            if (sources.length >= 2) {
+              sources[1].remove();
+            }
+          } else {
+            const mp4Source = document.createElement('source');
+            mp4Source.src = videoSrc;
+            mp4Source.type = 'video/mp4';
+            video.appendChild(mp4Source);
+          }
+          video.dataset.loaded = 'true';
+        }
+
         // Pause any currently playing video
         pauseAllVideos();
         
@@ -444,15 +645,65 @@ document.addEventListener('DOMContentLoaded', () => {
   
   initVideoThumbnails();
 
+  // Normalize desktop nav links so the underline tracks the text label, not the icon.
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    const underline = link.querySelector('.nav-underline');
+    if (!underline) return;
+
+    let label = link.querySelector('.nav-link-label');
+    if (!label) {
+      label = document.createElement('span');
+      label.className = 'nav-link-label';
+
+      const nodesToMove = [];
+      link.childNodes.forEach((node) => {
+        if (node === underline) return;
+        if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) return;
+        if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'I') return;
+        nodesToMove.push(node);
+      });
+
+      const icon = link.querySelector('i');
+      if (icon?.nextSibling) {
+        link.insertBefore(label, icon.nextSibling);
+      } else {
+        link.insertBefore(label, underline);
+      }
+
+      nodesToMove.forEach((node) => {
+        if (node.parentNode === link) {
+          label.appendChild(node);
+        }
+      });
+    }
+
+    if (!label.contains(underline)) {
+      label.appendChild(underline);
+    }
+  });
+
   // Active Navigation Link Highlighting
   const currentPage = window.location.pathname.split('/').pop();
+  const navParentPage = document.body?.dataset?.navParent || '';
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
   
   navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage || 
-        (currentPage === '' && linkHref === 'index.html') ||
-        (currentPage === 'index.html' && linkHref === 'index.html')) {
+    const rawHref = link.getAttribute('href');
+    if (!rawHref) return;
+
+    let linkPage = rawHref;
+    try {
+      const resolvedUrl = new URL(rawHref, window.location.href);
+      if (resolvedUrl.origin !== window.location.origin) return;
+      linkPage = resolvedUrl.pathname.split('/').pop() || 'index.html';
+    } catch (error) {
+      return;
+    }
+
+    if (linkPage === currentPage ||
+        (navParentPage && linkPage === navParentPage) ||
+        (currentPage === '' && linkPage === 'index.html') ||
+        (currentPage === 'index.html' && linkPage === 'index.html')) {
       link.classList.add('active');
     }
   });
@@ -485,35 +736,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Toast Notification Function
-  function showToast(message, type = 'success') {
-    const toast = document.createElement('div');
-    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-hard transform translate-x-full opacity-0 transition-all duration-500 ${
-      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-    }`;
-    toast.innerHTML = `
-      <div class="flex items-center space-x-3">
-        <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-        <span>${message}</span>
-      </div>
-    `;
-    
-    document.body.appendChild(toast);
-    
-    // Animate in
-    setTimeout(() => {
-      toast.classList.remove('translate-x-full', 'opacity-0');
-      toast.classList.add('translate-x-0', 'opacity-100');
-    }, 10);
-    
-    // Animate out and remove
-    setTimeout(() => {
-      toast.classList.remove('translate-x-0', 'opacity-100');
-      toast.classList.add('translate-x-full', 'opacity-0');
-      setTimeout(() => toast.remove(), 500);
-    }, 3000);
-  }
-
   // Parallax Effect on Hero Section
   const heroSection = document.querySelector('.hero-section');
   if (heroSection) {
@@ -533,18 +755,6 @@ document.addEventListener('DOMContentLoaded', () => {
   whatsappBtn.title = 'Chat with us on WhatsApp';
   document.body.appendChild(whatsappBtn);
 
-  // Preloader
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        preloader.classList.add('opacity-0');
-        setTimeout(() => {
-          preloader.style.display = 'none';
-        }, 150);
-      }, 250);
-    });
-  }
 });
 
 // Initialize when page loads

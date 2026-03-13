@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -48,7 +48,7 @@
   <script src="scripts.js" defer></script>
 </head>
 
-<body class="bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('assets/wallpaper.jpg');">
+<body class="bg-cover bg-center bg-no-repeat lg:bg-fixed" style="background-image: url('assets/wallpaper.jpg');">
 
   <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">Skip to main content</a>
@@ -89,7 +89,7 @@
           </a>
           
           <a href="academics.html" 
-             class="nav-link group relative px-3 py-2 text-sm font-medium text-primary font-semibold transition-colors duration-300">
+             class="nav-link group relative px-3 py-2 text-sm text-primary font-semibold transition-colors duration-300">
             <i class="fas fa-graduation-cap mr-1.5 text-xs"></i>
             Academics
             <span class="nav-underline"></span>
@@ -190,19 +190,30 @@
 
   <style>
   .nav-underline {
-    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-3/4;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, #1a5f7a, #f59e0b);
+    transform: translateX(-50%);
+    transition: width 300ms ease;
   }
 
+  .nav-link:hover .nav-underline,
   .nav-link.active .nav-underline {
-    @apply w-3/4;
+    width: 75%;
   }
 
   .nav-link.active {
-    @apply text-primary font-semibold;
+    color: #1a5f7a;
+    font-weight: 600;
   }
 
   .mobile-nav-link.active {
-    @apply bg-primary/10 text-primary font-semibold;
+    background-color: rgba(26, 95, 122, 0.1);
+    color: #1a5f7a;
+    font-weight: 600;
   }
   </style>
 
@@ -220,6 +231,71 @@
     <p class="text-xl italic text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
       Comprehensive educational programs designed to nurture excellence and innovation
     </p>
+  </section>
+
+  <section class="mb-20">
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+      <div data-aos="fade-up" class="rounded-[2rem] border border-white/60 bg-white/90 p-8 shadow-soft backdrop-blur-sm md:p-10">
+        <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+          Balanced Academic Direction
+        </span>
+        <h2 class="mt-5 text-3xl font-bold text-gray-800 md:text-4xl">
+          Strong foundations, practical teaching, and steady learner progress
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-gray-700">
+          Milestone School delivers an academic experience built around literacy, numeracy, science, character, and confident communication, with teaching that keeps learners active and supported.
+        </p>
+        <p class="mt-4 leading-relaxed text-gray-600">
+          Our approach blends local relevance with broader academic standards so families can expect both structure and growth at every stage of the learner journey.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="admissions.html" class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-secondary to-orange-400 px-6 py-3 font-semibold text-white shadow-hard transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
+            Ask About Placement
+            <i class="fas fa-arrow-right text-sm"></i>
+          </a>
+          <a href="contact.html" class="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white px-6 py-3 font-semibold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-primary/5">
+            Speak to Admissions
+            <i class="fas fa-comments text-sm"></i>
+          </a>
+        </div>
+      </div>
+
+      <div data-aos="fade-up" data-aos-delay="100" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+        <article class="rounded-3xl border border-white/60 bg-white/90 p-6 shadow-soft backdrop-blur-sm">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-teal-500 text-white shadow-lg">
+              <i class="fas fa-layer-group text-xl"></i>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-gray-800">Structured stages</p>
+              <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">Early Years to Upper Primary</p>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-3xl border border-white/60 bg-white/90 p-6 shadow-soft backdrop-blur-sm">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary to-orange-400 text-white shadow-lg">
+              <i class="fas fa-chalkboard-user text-xl"></i>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-gray-800">Active teaching</p>
+              <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">Practical and learner-centered</p>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-3xl border border-white/60 bg-white/90 p-6 shadow-soft backdrop-blur-sm sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-4">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-teal-400 text-white shadow-lg">
+              <i class="fas fa-chart-line text-xl"></i>
+            </div>
+            <div>
+              <p class="text-3xl font-bold text-gray-800">Measured progress</p>
+              <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">Regular feedback and reporting</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- Academics Content -->
@@ -318,6 +394,56 @@
           </p>
         </div>
 
+        <div id="learning-pathways" data-aos="fade-up" data-aos-delay="450" class="md:col-span-2 bg-white text-left p-8 rounded-2xl shadow-soft hover:shadow-hard transform transition-all duration-500 hover:-translate-y-2 border border-gray-100">
+          <div class="flex items-center justify-center mb-6">
+            <div class="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+              <i class="fas fa-sitemap text-white text-xl"></i>
+            </div>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Academic Pathways</h2>
+          <p class="text-gray-700 leading-relaxed text-center max-w-3xl mx-auto mb-10">
+            Our academic journey is structured to help each learner grow with confidence, from foundational early learning through strong primary school preparation.
+          </p>
+          <div class="grid gap-6 lg:grid-cols-3">
+            <article class="rounded-2xl border border-primary/10 bg-primary/5 p-6 shadow-soft">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Early Years</h3>
+              <p class="text-sm font-semibold text-primary mb-3">Nursery and Reception</p>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Learners build confidence in communication, number awareness, early reading, movement, and social development through guided play and structured routines.
+              </p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-2"></i><span>Phonics and early literacy</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-2"></i><span>Number sense and pattern work</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-2"></i><span>Creative play and social routines</span></li>
+              </ul>
+            </article>
+            <article class="rounded-2xl border border-secondary/10 bg-secondary/5 p-6 shadow-soft">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Lower Primary</h3>
+              <p class="text-sm font-semibold text-secondary mb-3">Grades 1 to 4</p>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The lower primary program strengthens literacy, numeracy, science understanding, and learner independence through practical classroom activities and regular feedback.
+              </p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-2"></i><span>Reading fluency and writing skills</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-2"></i><span>Mathematics foundations</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-2"></i><span>Practical science and project work</span></li>
+              </ul>
+            </article>
+            <article class="rounded-2xl border border-accent/10 bg-accent/5 p-6 shadow-soft">
+              <h3 class="text-xl font-bold text-gray-800 mb-3">Upper Primary</h3>
+              <p class="text-sm font-semibold text-accent mb-3">Grades 5 to 7</p>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                Upper primary learners are prepared for examinations and secondary school transition through deeper subject mastery, revision planning, and responsible study habits.
+              </p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i><span>Exam readiness and revision support</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i><span>Critical thinking and problem solving</span></li>
+                <li class="flex items-start"><i class="fas fa-check-circle text-accent mt-1 mr-2"></i><span>Leadership and personal discipline</span></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
         <div id="ict-stem" data-aos="fade-up" data-aos-delay="500" class="md:col-span-2 group bg-gradient-to-br from-primary via-teal-500 to-accent text-white text-center p-10 rounded-2xl shadow-hard max-w-4xl mx-auto md:mt-12 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-glow">
           <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
             <i class="fas fa-microscope text-white text-3xl"></i>
@@ -343,7 +469,7 @@
             Beyond classroom achievements, Milestone learners regularly represent the school in academic competitions, spelling bees, and quiz challenges, where they have earned numerous awards for excellence and teamwork.
           </p>
           <p class="text-gray-700 leading-relaxed text-lg max-w-2xl mx-auto">
-            We take pride in our graduates who have advanced to prestigious secondary schools, both locally and internationally, continuing to reflect the values instilled at Milestone—humility, discipline, and determination.
+            We take pride in our graduates who have advanced to prestigious secondary schools, both locally and internationally, continuing to reflect the values instilled at Milestone humility, discipline, and determination.
           </p>
         </div>
         
@@ -351,96 +477,213 @@
     </div>
   </section>
 
+        <section id="assessment" data-aos="fade-up" data-aos-delay="650" class="mx-auto mb-12 max-w-5xl rounded-2xl border border-gray-100 bg-white p-10 shadow-soft transition-all duration-500 hover:-translate-y-2 hover:shadow-hard">
+          <div class="flex items-center justify-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-secondary to-orange-400 rounded-2xl flex items-center justify-center">
+              <i class="fas fa-chart-line text-white text-2xl"></i>
+            </div>
+          </div>
+          <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">Assessment and Progress Tracking</h2>
+          <p class="text-gray-700 leading-relaxed text-lg max-w-3xl mx-auto text-center mb-10">
+            We monitor progress closely through class participation, assignments, structured tests, revision support, and regular feedback so parents and learners understand both strengths and next steps.
+          </p>
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="rounded-2xl bg-gray-50 p-6 border border-gray-100">
+              <h3 class="text-lg font-bold text-gray-800 mb-3">Continuous Assessment</h3>
+              <p class="text-gray-700 leading-relaxed">Teachers review learner progress throughout the term using written work, classroom participation, practical tasks, and targeted support activities.</p>
+            </div>
+            <div class="rounded-2xl bg-gray-50 p-6 border border-gray-100">
+              <h3 class="text-lg font-bold text-gray-800 mb-3">Term Reporting</h3>
+              <p class="text-gray-700 leading-relaxed">Parents receive structured updates on academic performance, behaviour, and development areas to support learning both at school and at home.</p>
+            </div>
+            <div class="rounded-2xl bg-gray-50 p-6 border border-gray-100">
+              <h3 class="text-lg font-bold text-gray-800 mb-3">Exam Preparation</h3>
+              <p class="text-gray-700 leading-relaxed">Upper primary learners receive guided revision, practice exercises, and exam-readiness coaching to build confidence before major assessments.</p>
+            </div>
+          </div>
+        </section>
+        
   <!-- CTA Section -->
-  <div data-aos="fade-up" data-aos-delay="700" class="text-center py-12 mb-10">
-    <a href="admissions.html" class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-secondary to-orange-400 text-white font-bold rounded-full shadow-hard hover:shadow-glow transform hover:scale-105 transition-all duration-300">
-      Apply Now
-      <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
-    </a>
-  </div>
- </main>
-   
-  <!-- Footer Section -->
+  <section data-aos="fade-up" data-aos-delay="700" class="mb-10 rounded-[2rem] bg-gradient-to-r from-primary via-teal-600 to-accent px-8 py-10 text-center text-white shadow-hard md:px-12">
+    <span class="inline-block rounded-full bg-white/15 px-4 py-2 text-sm font-semibold tracking-wide text-white/90">
+      Next Step
+    </span>
+    <h2 class="mt-4 text-3xl font-bold md:text-4xl">Take the next step in academics</h2>
+    <p class="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-white/90">
+      Speak with our admissions team about placement, curriculum fit, and the best entry point for your learner.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a href="admissions.html" class="group/btn inline-flex items-center rounded-full bg-white px-8 py-4 font-bold text-primary shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
+        Apply Now
+        <i class="fas fa-arrow-right ml-2 transition-transform group-hover/btn:translate-x-1"></i>
+      </a>
+      <a href="assets/Milestone School Application Form.pdf" download class="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-8 py-4 font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20">
+        Download Application Form
+        <i class="fas fa-download ml-2"></i>
+      </a>
+    </div>
+  </section>
+ </main>  <!-- Footer Section -->
   <section class="bg-gradient-to-br from-primary via-teal-600 to-accent text-white py-16 relative overflow-hidden">
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Contact Details -->
-        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-4">
+      <div class="grid gap-8 lg:grid-cols-3 mb-12">
+        <div class="text-center md:text-left bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-start mb-4">
             <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
               <i class="fas fa-map-marker-alt text-white text-xl"></i>
             </div>
             <h2 class="text-2xl font-bold">Get in Touch</h2>
           </div>
+
           <div class="space-y-3 text-gray-100">
-            <p class="flex items-center">
+            <p class="flex items-center justify-center md:justify-start">
               <i class="fas fa-home mr-3 text-secondary"></i>
               House No. 31 Holly Street, <span class="text-secondary font-semibold ml-1">Kabwe</span>, Zambia
             </p>
-            <p class="flex items-center">
+
+            <p class="flex items-center justify-center md:justify-start">
               <i class="fas fa-phone mr-3 text-secondary"></i>
               <span class="text-secondary font-semibold">+260 978 443 323</span>
             </p>
-            <p class="flex items-center">
+
+            <p class="flex items-center justify-center md:justify-start break-all md:break-normal">
               <i class="fas fa-envelope mr-3 text-secondary"></i>
               <a href="mailto:milestoneschool.education@gmail.com" class="text-secondary hover:text-yellow-300 transition-colors underline">
                 milestoneschool.education@gmail.com
               </a>
             </p>
           </div>
+
+          <a href="https://wa.me/260972712158?text=Hello%20Milestone%20School%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-300">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span>Contact Us on WhatsApp</span>
+          </a>
         </div>
 
-        <!-- Social Links -->
+        <div class="text-center bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center mb-4">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-file-download text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Ready to Join Us?</h2>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Download our application form and begin your journey with Milestone School today.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="assets/Milestone School Application Form.pdf" download class="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
+              <i class="fas fa-download"></i>
+              <span>Download Application Form</span>
+            </a>
+            <a href="contact.html" class="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20">
+              <i class="fas fa-envelope"></i>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right max-w-none bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-end mb-4">
+            <h2 class="text-2xl font-bold">Need Quick Help?</h2>
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center ml-3">
+              <i class="fas fa-question-circle text-white text-xl"></i>
+            </div>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Chat with our team directly on WhatsApp for admissions, enquiries, or general information. We're here to help!
+          </p>
+          <div class="flex items-center justify-center md:justify-end text-secondary">
+            <i class="fas fa-clock mr-2"></i>
+            <span class="font-semibold">Response within 24 hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-4">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-link text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Quick Links</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-gray-100">
+            <a href="index.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-home mr-2"></i>
+              <span>Home</span>
+            </a>
+            <a href="admissions.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-user-plus mr-2"></i>
+              <span>Admissions</span>
+            </a>
+            <a href="staff.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-users mr-2"></i>
+              <span>Staff</span>
+            </a>
+            <a href="events.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-calendar-alt mr-2"></i>
+              <span>Events</span>
+            </a>
+            <a href="gallery.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-images mr-2"></i>
+              <span>Gallery</span>
+            </a>
+            <a href="contact.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-envelope mr-2"></i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center mb-6">
             <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
               <i class="fas fa-share-alt text-white text-xl"></i>
             </div>
             <h2 class="text-2xl font-bold">Follow Us</h2>
           </div>
-          <p class="text-gray-100 mb-6">Stay connected with us on social media</p>
+          <p class="text-gray-100 mb-6">Stay connected with us on social media for updates, news, and events.</p>
           <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform"></i>
+            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
-            <a href="https://wa.me/260978443323" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform"></i>
+            <a href="https://wa.me/260978443323" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-tiktok text-white text-2xl group-hover:scale-110 transition-transform"></i>
-            </a>
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-instagram text-white text-2xl group-hover:scale-110 transition-transform"></i>
-            </a>
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-            <i class="fab fa-youtube text-white text-2xl group-hover:scale-110 transition-transform"></i>
-          </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/20 pt-8">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <p class="text-gray-100 text-sm">Accredited by:</p>
+          <div class="flex justify-center md:justify-start gap-6">
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.exams-council.org.zm/wp-content/uploads/2025/03/cropped-cropped-ECZ-logo-27-05-2024-01-150x150.jpg" alt="Examination Council of Zambia" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.edu.gov.zm/wp-content/uploads/2024/06/edu-loogo2-e1718996036101.png" alt="Ministry of Education" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <!-- Footer Bottom -->
   <div class="bg-gray-900 py-6 border-t border-gray-700">
     <div class="container mx-auto px-6">
       <p class="text-center text-gray-300 text-sm font-medium">
-        &copy; <span id="date"></span> 
-        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>. 
-        All Rights Reserved. Developed by 
-        <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
+        &copy; <span id="date"></span>
+        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>.
+        All Rights Reserved. Developed by
+        <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" rel="noopener noreferrer" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
       </p>
     </div>
   </div>
-
   <!-- Back to Top Button -->
-  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group">
-    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform"></i>
+  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
   </button>
     
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -449,3 +692,4 @@
   </script>
 </body>
 </html>
+

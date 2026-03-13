@@ -5,13 +5,15 @@
   const COOKIE_CONSENT_KEY = 'milestone_cookie_consent';
   const COOKIE_PREFERENCES_KEY = 'milestone_cookie_preferences';
   const COOKIE_EXPIRY_DAYS = 365;
+  const PRIVACY_PAGE = 'privacy.html';
 
   // Cookie utility functions
   function setCookie(name, value, days) {
     const date = new Date();
     date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
     const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
+    const secureFlag = window.location.protocol === 'https:' ? ';Secure' : '';
+    document.cookie = `${name}=${encodeURIComponent(value)};${expires};path=/;SameSite=Lax${secureFlag}`;
   }
 
   function getCookie(name) {
@@ -20,13 +22,14 @@
     for (let i = 0; i < ca.length; i++) {
       let c = ca[i];
       while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+      if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
     }
     return null;
   }
 
   function deleteCookie(name) {
-    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+    const secureFlag = window.location.protocol === 'https:' ? ';Secure' : '';
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;SameSite=Lax${secureFlag}`;
   }
 
   // Check if consent has been given
@@ -43,7 +46,12 @@
   // Get saved preferences
   function getPreferences() {
     const prefs = getCookie(COOKIE_PREFERENCES_KEY);
-    return prefs ? JSON.parse(prefs) : null;
+    if (!prefs) return null;
+    try {
+      return JSON.parse(prefs);
+    } catch (error) {
+      return null;
+    }
   }
 
   // Create cookie consent banner
@@ -56,6 +64,7 @@
     banner.id = 'cookie-consent-banner';
     banner.className = 'fixed bottom-4 right-4 z-50 bg-white shadow-2xl border border-gray-200 rounded-lg max-w-sm transform translate-x-full opacity-0 transition-all duration-300';
     banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-modal', 'false');
     banner.setAttribute('aria-label', 'Cookie consent');
     banner.innerHTML = `
       <div class="p-4">
@@ -66,15 +75,15 @@
           <div class="flex-1 min-w-0">
             <h3 class="text-sm font-bold text-gray-900 mb-1">We Use Cookies</h3>
             <p class="text-xs text-gray-600 leading-relaxed">
-              We use cookies to enhance your experience. 
-              <a href="/privacy.html" class="text-primary hover:underline">Learn more</a>
+              We use essential cookies to remember your preferences and optional analytics preferences for future services.
+              <a href="${PRIVACY_PAGE}" class="text-primary hover:underline">Learn more</a>
             </p>
           </div>
         </div>
-        <div class="flex gap-2">
+        <div class="flex flex-wrap gap-2">
           <button id="cookie-accept-necessary" 
                   class="flex-1 px-3 py-1.5 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors font-medium">
-            Necessary
+            Essential Only
           </button>
           <button id="cookie-accept-all" 
                   class="flex-1 px-3 py-1.5 text-xs bg-gradient-to-r from-primary to-teal-500 text-white rounded-md hover:shadow-md transition-all font-medium">

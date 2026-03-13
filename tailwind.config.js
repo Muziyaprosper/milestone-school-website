@@ -1,6 +1,10 @@
 // tailwind.config.js
 module.exports = {
-  content: ['./**/*.{html,js}'],
+  content: [
+    './*.html',
+    './*.js',
+    './src/**/*.{css,html,js}',
+  ],
   theme: {
     extend: {
       colors: {

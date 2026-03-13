@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -47,7 +47,7 @@
   <!-- Scripts -->
   <script src="scripts.js" defer></script>
 </head>
-<body class="bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: url('assets/wallpaper.jpg');">
+<body class="bg-cover bg-center bg-no-repeat lg:bg-fixed" style="background-image: url('assets/wallpaper.jpg');">
 
   <!-- Skip to main content link for accessibility -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">Skip to main content</a>
@@ -188,24 +188,6 @@
     </nav>
   </header>
 
-  <style>
-  .nav-underline {
-    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-3/4;
-  }
-
-  .nav-link.active .nav-underline {
-    @apply w-3/4;
-  }
-
-  .nav-link.active {
-    @apply text-primary font-semibold;
-  }
-
-  .mobile-nav-link.active {
-    @apply bg-primary/10 text-primary font-semibold;
-  }
-  </style>
-
   <main id="main-content" class="container mx-auto px-4 sm:px-6 py-12" role="main">
     <!-- Hero Section -->
     <section class="text-center mb-16">
@@ -223,6 +205,50 @@
       <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-4" data-aos="fade-up" data-aos-delay="300">
         Each member of our staff embodies the school's motto <strong class="text-primary">"Humble Grooming for a Bright Future"</strong> by fostering excellence, discipline, and integrity in all that they do.
       </p>
+    </section>
+
+    <section class="mb-20">
+      <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+        <div data-aos="fade-up" class="rounded-[2rem] border border-white/60 bg-white/90 p-8 shadow-soft backdrop-blur-sm md:p-10">
+          <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+            Meet the People Behind Milestone
+          </span>
+          <h2 class="mt-5 text-3xl font-bold text-gray-800 md:text-4xl">
+            Leadership, teaching, and support teams working together for every learner
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-gray-700">
+            Our staff page highlights the people who shape daily school life, from strategic leadership and classroom teaching to specialist support and learner care.
+          </p>
+          <p class="mt-4 leading-relaxed text-gray-600">
+            Families can explore key profiles, understand the structure of the team, and see the breadth of experience that supports Milestone learners across every stage.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="100" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <article class="rounded-3xl border border-white/60 bg-white/90 p-6 shadow-soft backdrop-blur-sm">
+            <div class="flex items-center gap-4">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-teal-500 text-white shadow-lg">
+                <i class="fas fa-user-tie text-xl"></i>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-gray-800">Leadership</p>
+                <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">Direction and school oversight</p>
+              </div>
+            </div>
+          </article>
+          <article class="rounded-3xl border border-white/60 bg-white/90 p-6 shadow-soft backdrop-blur-sm">
+            <div class="flex items-center gap-4">
+              <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-secondary to-orange-400 text-white shadow-lg">
+                <i class="fas fa-chalkboard-teacher text-xl"></i>
+              </div>
+              <div>
+                <p class="text-3xl font-bold text-gray-800">Teaching teams</p>
+                <p class="text-sm font-medium uppercase tracking-[0.2em] text-gray-500">Early learning to upper primary</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
 
@@ -270,8 +296,6 @@
           <h3 class="text-xl font-bold text-gray-800 mb-2">Mrs. A. T. Musonda</h3>
           <p class="text-primary font-semibold mb-3">Headteacher</p>
           <p class="text-sm text-gray-600">Oversees the day-to-day school activities, manages staff, and ensures order and development.</p>
-          <div class="hover-message absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
-          </div>
         </div>
 
 <!-- Head of ICT -->
@@ -286,7 +310,7 @@
     <p class="text-sm text-gray-600">Oversees administrative support functions while leading ICT integration, digital literacy, and technology innovation across all grades.</p>
   </div>
 </a>
-<a href="#" class="block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary rounded-2xl" aria-label="View profile for Mr. Prosper Muziya">
+<div class="block rounded-2xl" aria-label="Profile for Mrs. Mwiya">
   <div class="group bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-8 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="200">
     <div class="relative mb-6 w-40 h-40 mx-auto">
       <div class="absolute inset-0 bg-gradient-to-br from-secondary to-orange-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
@@ -297,33 +321,31 @@
     <p class="text-sm text-gray-600">Oversees daily school operations, supports staff and learners, and ensures policies, records, and academic activities run efficiently.
 </p>
   </div>
-</a>
+</div>
 
 
         <!-- Nursery Manager -->
-        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-8 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard hover:shadow-glow text-center p-8 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="300">
           <div class="relative mb-6 w-40 h-40 mx-auto">
             <div class="absolute inset-0 bg-gradient-to-br from-accent to-teal-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
             <img alt="Teacher's Picture" src="assets/Ms. Mphande.png" class="relative w-40 h-40 rounded-full mx-auto border-4 border-accent/20 object-cover group-hover:scale-110 transition-transform duration-300">
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Ms. C. Mphande</h3>
-          <p class="text-primary font-semibold mb-3">Nursery Section Manager</p>
-          <p class="text-sm text-gray-600">Supports academic coordination, staff supervision, and learner welfare programs.</p>
+          <h3 class="text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-primary">Ms. C. Mphande</h3>
+          <p class="text-primary font-semibold mb-3 transition-transform duration-300 group-hover:scale-105">Nursery Section Manager</p>
+          <p class="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-700">Supports academic coordination, staff supervision, and learner welfare programs.</p>
           <div class="hover-message absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
           </div>
         </div>
 
         <!-- Senior Teacher -->
-<div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-8 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+<div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard hover:shadow-glow text-center p-8 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="400">
   <div class="relative mb-6 w-40 h-40 mx-auto">
     <div class="absolute inset-0 bg-gradient-to-br from-accent to-teal-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity"></div>
             <img alt="Teacher's Picture" src="assets/Mr. Tembo.JPG" class="relative w-40 h-40 rounded-full mx-auto border-4 border-accent/20 object-cover group-hover:scale-110 transition-transform duration-300">
           </div>
-          <h3 class="text-xl font-bold text-gray-800 mb-2">Mr. J. Tembo</h3>
-  <p class="text-primary font-semibold mb-3">Senior Teacher and Grade 7 Class Teacher</p>
-  <p class="text-sm text-gray-600">Provides academic leadership, mentors teaching staff, and guides Grade 7 learners toward strong academic performance.</p>
-  <div class="hover-message absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
-  </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-2 transition-colors duration-300 group-hover:text-primary">Mr. J. Tembo</h3>
+  <p class="text-primary font-semibold mb-3 transition-transform duration-300 group-hover:scale-105">Senior Teacher and Grade 7 Class Teacher</p>
+  <p class="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-700">Provides academic leadership, mentors teaching staff, and guides Grade 7 learners toward strong academic performance.</p>
 </div>
 
       </div>
@@ -352,27 +374,22 @@
 
 
 
-        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="300">
+        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard hover:shadow-glow text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="300">
           <div class="relative mb-4 w-40 h-40 mx-auto">
             <div class="absolute inset-0 bg-primary/10 rounded-full blur-lg"></div>
             <img alt="Teacher's Picture" src="assets/Ms. Phiri G.JPG" class="relative w-40 h-40 rounded-full mx-auto border-2 border-primary/20 object-cover group-hover:scale-110 transition-transform duration-300">
           </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-1">Ms. Phiri</h3>
-          <p class="text-primary font-semibold text-sm">Grade Two Teacher</p>
-          <div class="hover-message absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
-          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-1 transition-colors duration-300 group-hover:text-primary">Ms. Phiri</h3>
+          <p class="text-primary font-semibold text-sm transition-transform duration-300 group-hover:scale-105">Grade Two Teacher</p>
         </div>
 
-        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="400">
+        <div class="group relative bg-white rounded-2xl shadow-soft hover:shadow-hard hover:shadow-glow text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="400">
           <div class="relative mb-4 w-40 h-40 mx-auto">
             <div class="absolute inset-0 bg-primary/10 rounded-full blur-lg"></div>
             <img alt="Teacher's Picture" src="assets/Mrs. Shabukali.JPG" class="relative w-40 h-40 rounded-full mx-auto border-2 border-primary/20 object-cover group-hover:scale-110 transition-transform duration-300">
           </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-1">Mrs. Shabukali</h3>
-          <p class="text-primary font-semibold text-sm">Grade Three Teacher</p>
-          <div class="hover-message absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
-  
-          </div>
+          <h3 class="text-lg font-bold text-gray-800 mb-1 transition-colors duration-300 group-hover:text-primary">Mrs. Shabukali</h3>
+          <p class="text-primary font-semibold text-sm transition-transform duration-300 group-hover:scale-105">Grade Three Teacher</p>
         </div>
 
         <div class="group bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="500">
@@ -513,15 +530,6 @@
           <p class="text-primary font-semibold text-sm">Lower Nursey Teacher</p>
         </div>
 
-        <div class="group bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="900">
-          <div class="relative mb-4 w-40 h-40 mx-auto">
-            <div class="absolute inset-0 bg-primary/10 rounded-full blur-lg"></div>
-            <img alt="Teacher's Picture" src="assets/Ms. Phiri 3.JPG" class="relative w-40 h-40 rounded-full mx-auto border-2 border-primary/20 object-cover group-hover:scale-110 transition-transform duration-300">
-          </div>
-          <h3 class="text-lg font-bold text-gray-800 mb-1">Ms. Phiri</h3>
-          <p class="text-primary font-semibold text-sm">Lower Nursery Teacher</p>
-        </div>
-
         <div class="group bg-white rounded-2xl shadow-soft hover:shadow-hard text-center p-6 transform transition-all duration-500 hover:-translate-y-2 border border-gray-100" data-aos="fade-up" data-aos-delay="1000">
           <div class="relative mb-4 w-40 h-40 mx-auto">
             <div class="absolute inset-0 bg-primary/10 rounded-full blur-lg"></div>
@@ -584,10 +592,6 @@
 </div>
 
       </div>
-    </section>
-
-          
-       </div>
     </section>
 
     <!-- Departments & Support Teams -->
@@ -666,107 +670,178 @@
         <blockquote class="italic text-xl md:text-2xl text-gray-700 font-medium">
           "At Milestone School, every teacher is not only an instructor but also a mentor, a guide, and a role model. Together, we shape lives and inspire futures."
         </blockquote>
-        <p class="mt-4 text-gray-600 font-semibold">— Milestone School</p>
+        <p class="mt-4 text-gray-600 font-semibold">Milestone School</p>
       </div>
     </section>
 
-  </main>
-
-  <!-- Footer Section -->
+  </main>  <!-- Footer Section -->
   <section class="bg-gradient-to-br from-primary via-teal-600 to-accent text-white py-16 relative overflow-hidden">
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
       <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
     </div>
-    
     <div class="container mx-auto px-6 relative z-10">
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Contact Details -->
-        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-4">
+      <div class="grid gap-8 lg:grid-cols-3 mb-12">
+        <div class="text-center md:text-left bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-start mb-4">
             <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
               <i class="fas fa-map-marker-alt text-white text-xl"></i>
             </div>
             <h2 class="text-2xl font-bold">Get in Touch</h2>
           </div>
+
           <div class="space-y-3 text-gray-100">
-            <p class="flex items-center">
+            <p class="flex items-center justify-center md:justify-start">
               <i class="fas fa-home mr-3 text-secondary"></i>
               House No. 31 Holly Street, <span class="text-secondary font-semibold ml-1">Kabwe</span>, Zambia
             </p>
-            <p class="flex items-center">
+
+            <p class="flex items-center justify-center md:justify-start">
               <i class="fas fa-phone mr-3 text-secondary"></i>
               <span class="text-secondary font-semibold">+260 978 443 323</span>
             </p>
-            <p class="flex items-center">
+
+            <p class="flex items-center justify-center md:justify-start break-all md:break-normal">
               <i class="fas fa-envelope mr-3 text-secondary"></i>
               <a href="mailto:milestoneschool.education@gmail.com" class="text-secondary hover:text-yellow-300 transition-colors underline">
                 milestoneschool.education@gmail.com
               </a>
             </p>
           </div>
+
+          <a href="https://wa.me/260972712158?text=Hello%20Milestone%20School%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-300">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span>Contact Us on WhatsApp</span>
+          </a>
         </div>
 
-        <!-- Social Links -->
+        <div class="text-center bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center mb-4">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-file-download text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Ready to Join Us?</h2>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Download our application form and begin your journey with Milestone School today.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <a href="assets/Milestone School Application Form.pdf" download class="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
+              <i class="fas fa-download"></i>
+              <span>Download Application Form</span>
+            </a>
+            <a href="contact.html" class="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20">
+              <i class="fas fa-envelope"></i>
+              <span>Contact Us</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center md:text-right max-w-none bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center justify-center md:justify-end mb-4">
+            <h2 class="text-2xl font-bold">Need Quick Help?</h2>
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center ml-3">
+              <i class="fas fa-question-circle text-white text-xl"></i>
+            </div>
+          </div>
+          <p class="text-gray-100 mb-6 text-lg">
+            Chat with our team directly on WhatsApp for admissions, enquiries, or general information. We're here to help!
+          </p>
+          <div class="flex items-center justify-center md:justify-end text-secondary">
+            <i class="fas fa-clock mr-2"></i>
+            <span class="font-semibold">Response within 24 hours</span>
+          </div>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-4">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
+              <i class="fas fa-link text-white text-xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold">Quick Links</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-gray-100">
+            <a href="index.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-home mr-2"></i>
+              <span>Home</span>
+            </a>
+            <a href="admissions.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-user-plus mr-2"></i>
+              <span>Admissions</span>
+            </a>
+            <a href="staff.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-users mr-2"></i>
+              <span>Staff</span>
+            </a>
+            <a href="events.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-calendar-alt mr-2"></i>
+              <span>Events</span>
+            </a>
+            <a href="gallery.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-images mr-2"></i>
+              <span>Gallery</span>
+            </a>
+            <a href="contact.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
+              <i class="fas fa-envelope mr-2"></i>
+              <span>Contact</span>
+            </a>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
+          <div class="flex items-center mb-6">
             <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
               <i class="fas fa-share-alt text-white text-xl"></i>
             </div>
             <h2 class="text-2xl font-bold">Follow Us</h2>
           </div>
-          <p class="text-gray-100 mb-6">Stay connected with us on social media</p>
+          <p class="text-gray-100 mb-6">Stay connected with us on social media for updates, news, and events.</p>
           <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform"></i>
+            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
-            <a href="https://wa.me/260978443323" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform"></i>
+            <a href="https://wa.me/260978443323" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
+              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
             </a>
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-tiktok text-white text-2xl group-hover:scale-110 transition-transform"></i>
-            </a>
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-instagram text-white text-2xl group-hover:scale-110 transition-transform"></i>
-            </a>
-
-            <a href="#" target="_blank" class="group w-14 h-14 bg-white/10 hover:bg-gradient-to-br hover:from-purple-600 hover:to-pink-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-            <i class="fab fa-youtube text-white text-2xl group-hover:scale-110 transition-transform"></i>
-          </a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/20 pt-8">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+          <p class="text-gray-100 text-sm">Accredited by:</p>
+          <div class="flex justify-center md:justify-start gap-6">
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.exams-council.org.zm/wp-content/uploads/2025/03/cropped-cropped-ECZ-logo-27-05-2024-01-150x150.jpg" alt="Examination Council of Zambia" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
+              <img src="https://www.edu.gov.zm/wp-content/uploads/2024/06/edu-loogo2-e1718996036101.png" alt="Ministry of Education" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
   <!-- Footer Bottom -->
   <div class="bg-gray-900 py-6 border-t border-gray-700">
     <div class="container mx-auto px-6">
       <p class="text-center text-gray-300 text-sm font-medium">
-        &copy; <span id="date"></span> 
-        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>. 
-        All Rights Reserved. Developed by 
-        <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
+        &copy; <span id="date"></span>
+        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>.
+        All Rights Reserved. Developed by
+        <a href="https://wa.me/message/EARSZ7XJZEEXA1" target="_blank" rel="noopener noreferrer" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
       </p>
     </div>
   </div>
-
   <!-- Back to Top Button -->
-  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group">
-    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform"></i>
+  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
   </button>
     
-<script>
-  const box = document.getElementById('dr-nene');
-  box.addEventListener('mouseenter', () => {
-    box.setAttribute("title", "Click to view more details about Dr Nene" )
-    
-  });
-  </script>
-
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
 </body>
 </html>
+
+
