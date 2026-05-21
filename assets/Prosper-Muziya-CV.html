@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prosper Muziya CV</title>
+  <style>
+    :root {
+      --primary: #1a5f7a;
+      --secondary: #f9a826;
+      --text: #0f172a;
+      --muted: #475569;
+      --line: #dbe4ee;
+      --soft: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, #eef6fb 0%, #ffffff 100%);
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 24px 60px;
+    }
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+    .header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    h1, h2, h3 {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+    h1 { font-size: 38px; }
+    h2 { font-size: 22px; margin-bottom: 12px; color: var(--primary); }
+    h3 { font-size: 16px; margin-bottom: 6px; }
+    .name-heading {
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+      font-weight: 900;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 0.95;
+    }
+    .subtitle { color: var(--muted); margin-top: 8px; line-height: 1.7; max-width: 740px; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .pill {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: #e7f4fb;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .muted { color: var(--muted); line-height: 1.7; }
+    ul { margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .meta div {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .label { display:block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #64748b; }
+    .value { margin-top: 4px; font-size: 15px; font-weight: 700; color: var(--text); }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 20px;
+    }
+    @media (max-width: 760px) {
+      .grid.two, .grid.three, .meta { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      .page { padding: 24px 16px 48px; }
+      .card { padding: 20px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="card">
+      <div class="header">
+        <div>
+          <h1 class="name-heading">Prosper Muziya</h1>
+          <div class="subtitle">ICT Educator, Entrepreneur, Programmer, Graphic Designer, AI Enthusiast, Social Media Manager, and Founder of The Future.</div>
+        </div>
+        <div class="pill-row">
+          <span class="pill">ICT Teacher Zambia</span>
+          <span class="pill">AI Educator Zambia</span>
+          <span class="pill">The Future Zambia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Professional Summary</h2>
+      <p class="muted">Prosper Muziya is a Zambian ICT educator, entrepreneur, programmer, and digital creative based in Kabwe, Zambia. He works in education and digital innovation, combining classroom instruction, school systems support, branding, content creation, and practical technology training.</p>
+    </section>
+
+    <section class="card">
+      <h2>Core Information</h2>
+      <div class="meta">
+        <div><span class="label">Name</span><span class="value">Prosper Muziya</span></div>
+        <div><span class="label">Location</span><span class="value">Kabwe, Zambia</span></div>
+        <div><span class="label">Nationality</span><span class="value">Zambian</span></div>
+        <div><span class="label">Profession</span><span class="value">ICT Educator and Technology Specialist</span></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Experience</h2>
+      <h3>Milestone School - Head of ICT Department & Administration Assistant</h3>
+      <p class="muted">2023 to Present</p>
+      <ul>
+        <li>Teach ICT from Grades 2 to 7 using practical and blended learning methods.</li>
+        <li>Manage ICT systems, school digital workflows, and computer lab support.</li>
+        <li>Support teacher technology integration and school communication systems.</li>
+        <li>Develop digital learning materials and standardize templates for staff use.</li>
+        <li>Lead AI awareness, digital safety, and Microsoft Word certification activities.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>The Future</h2>
+      <p class="muted">The Future is Prosper's education and technology brand focused on digital creativity, pamphlet production, laptop sales, branding, social media management, website design, AI training, and practical digital support.</p>
+    </section>
+
+    <section class="card">
+      <h2>Skills</h2>
+      <div class="grid three">
+        <div><h3>Technology</h3><ul><li>Computer Programming</li><li>Web Development</li><li>AI Tools</li><li>ICT Systems Management</li></ul></div>
+        <div><h3>Creative</h3><ul><li>Graphic Design</li><li>Digital Content Creation</li><li>Branding and Marketing</li><li>Social Media Management</li></ul></div>
+        <div><h3>Languages</h3><ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li></ul></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Contact</h2>
+      <p class="muted">WhatsApp: +260 972 712 158</p>
+      <p class="muted">Email: milestoneschool.education@gmail.com</p>
+      <p class="muted">Location: Kabwe, Zambia</p>
+    </section>
+
+    <div class="footer">Prosper Muziya CV - generated for the Milestone School portfolio page.</div>
+  </div>
+</body>
+</html>

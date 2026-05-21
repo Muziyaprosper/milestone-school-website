@@ -1,6 +1,6 @@
 // scripts.js - Enhanced with modern features
 document.addEventListener('DOMContentLoaded', () => {
-  const PORTAL_URL = 'https://milestone.portal.com';
+  const PORTAL_URL = 'https://portal.milestoneschoolzambia.com';
   const COOKIE_CONSENT_SCRIPT = 'cookie-consent.js';
   let preloaderHidden = false;
 
@@ -142,11 +142,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function injectPortalLinks() {
     const desktopNav = document.querySelector('header .hidden.lg\\:flex, header .hidden.md\\:flex');
+    const normalizePortalLink = (link, className) => {
+      if (!link) return;
+      const text = link.textContent.replace(/\s+/g, ' ').trim();
+      if (className || text === 'Student Portal' || text.includes('Student Portal')) {
+        link.href = PORTAL_URL;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.classList.add(className);
+      }
+    };
+
     const existingDesktopPortalLink = desktopNav
       ? desktopNav.querySelector(`a[href="${PORTAL_URL}"], a[href="${PORTAL_URL}/"], .portal-nav-link`)
       : null;
-    if (existingDesktopPortalLink) {
-      existingDesktopPortalLink.classList.add('portal-nav-link');
+    if (desktopNav) {
+      desktopNav.querySelectorAll('a').forEach((link) => {
+        if (link.classList.contains('portal-nav-link') || link.textContent.replace(/\s+/g, ' ').trim().includes('Student Portal')) {
+          normalizePortalLink(link, 'portal-nav-link');
+        }
+      });
     }
     if (desktopNav && !existingDesktopPortalLink) {
       const portalLink = document.createElement('a');
@@ -171,8 +186,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingMobilePortalLink = mobileMenuEl
       ? mobileMenuEl.querySelector(`a[href="${PORTAL_URL}"], a[href="${PORTAL_URL}/"], .portal-mobile-link`)
       : null;
-    if (existingMobilePortalLink) {
-      existingMobilePortalLink.classList.add('portal-mobile-link');
+    if (mobileMenuEl) {
+      mobileMenuEl.querySelectorAll('a').forEach((link) => {
+        if (link.classList.contains('portal-mobile-link') || link.textContent.replace(/\s+/g, ' ').trim().includes('Student Portal')) {
+          normalizePortalLink(link, 'portal-mobile-link');
+        }
+      });
     }
     if (mobileMenuEl && !existingMobilePortalLink) {
       const mobilePortalLink = document.createElement('a');

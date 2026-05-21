@@ -1,0 +1,426 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 antialiased;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-secondary ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .premium-panel {
+    @apply rounded-[1.75rem] border border-white/60 bg-white/90 shadow-soft backdrop-blur-sm;
+  }
+
+  .portal-inline-chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm;
+  }
+
+  .portal-highlight-card {
+    @apply rounded-[1.75rem] border border-primary/10 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-hard;
+  }
+
+  .form-field {
+    @apply block w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm text-gray-800 shadow-sm transition duration-200 placeholder:text-gray-400 hover:border-primary/40 focus:border-secondary;
+  }
+
+  .form-label {
+    @apply mb-2 block text-sm font-semibold text-gray-700;
+  }
+
+  .field-error {
+    @apply mt-2 text-sm font-medium text-red-600;
+  }
+
+  .status-message {
+    @apply rounded-2xl border px-4 py-3 text-sm font-medium;
+  }
+
+  .status-message.success {
+    @apply border-green-200 bg-green-50 text-green-700;
+  }
+
+  .status-message.error {
+    @apply border-red-200 bg-red-50 text-red-700;
+  }
+
+  .portal-nav-item {
+    @apply text-primary;
+  }
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.nav-link-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: 0.1rem;
+}
+
+.nav-link-label .nav-underline {
+  position: absolute !important;
+  bottom: -0.2rem !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background-image: linear-gradient(to right, #1a5f7a, #f59e0b) !important;
+  transform: none !important;
+  transition: width 0.3s ease !important;
+}
+
+.nav-link:hover .nav-link-label .nav-underline,
+.nav-link.active .nav-link-label .nav-underline {
+  width: 100% !important;
+}
+
+.nav-link.active {
+  color: #1a5f7a !important;
+  font-weight: 600 !important;
+}
+
+.mobile-nav-link.active {
+  background-color: rgba(26, 95, 122, 0.1) !important;
+  color: #1a5f7a !important;
+  font-weight: 600 !important;
+}
+
+@layer utilities {
+  .section-shell {
+    @apply relative overflow-hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body.body-bg {
+  background-image: url('../assets/background.jpg');
+}
+
+body.home-page-bg {
+  background-image: url('../assets/bck-mobile.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+#preloader {
+  transition: opacity 180ms ease, visibility 180ms ease;
+}
+
+body.loaded #preloader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (min-width: 768px) {
+  body.home-page-bg {
+    background-image: url('../assets/bck-hero.webp');
+  }
+}
+/* Custom colors */
+@layer base {
+  :root {
+    --theme-turquoise: #40E0D0;
+    --theme-yellow: #FFD700;
+  }
+}
+
+/* Animations */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(100px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-in-left { animation: slideInLeft 2s ease-out forwards; }
+.slide-in-right {animation: slideInRight 2s ease-out fowards;}
+.fade-in { animation: fadeIn 1.5s ease-in forwards; }
+
+/* Scroll-triggered animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Add  new styles for scroll-triggered animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-section {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/bck.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.text-outline.black {
+  -webkit-text-stroke: 2px black;
+  color: transparent;
+}
+
+.text-outline.turquoise {
+  -webkit-text-stroke: 2px turquoise;
+  color: transparent;
+}
+
+.text-outline.yellow {
+  -webkit-text-stroke: 2px yellow;
+  color: white;
+}
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.32);
+}
+.text-shadow-lg {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.45)
+}
+.clip-dog-ear {
+  clip-path: polygon(
+    0% 0%,                     /* Top-left corner */
+    calc(100% - 60px) 0%,      /* Top-right, stopping 40px short */
+    100% 60px,                  /* 40px down from the top-right */
+    100% 100%,                  /* Bottom-right corner */
+    0% 100%                     /* Bottom-left corner */
+    );
+}
+
+/* 1. Basic card styling */
+.card {
+  background-color: whitesmoke; /* Light blue-gray background */
+  padding: 20px;
+  width: 400x;
+  height: 400px;
+  position: relative;
+  border-radius: 8px; /* Rounded corners for the card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  color: #333;
+  
+  /* This is CRUCIAL for positioning the fold */
+  position: relative; 
+}
+
+/* 2. The dog-ear fold element */
+.card::before {
+  content: '';
+  position: absolute;
+  
+  /* Position it in the bottom-right corner */
+  bottom: 0;
+  right: 0;
+  
+  /* Define the size of the fold */
+  width: 60px;
+  height: 60px;
+  
+  /* 3. Create the fold and shadow */
+  
+  /* The gradient creates the triangular fold shape */
+  background: linear-gradient(315deg, transparent 50%, #b0bec5 50%);
+  
+  /* The shadow makes it look like the corner is lifted */
+  box-shadow: -3px -3px 8px rgba(0, 0, 0, 0.2);
+
+  /* Optional: Smooths the inner corner of the fold */
+  border-top-left-radius: 8px;
+}
+
+#scrollTopBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  bottom: 25px; /* Distance from bottom */
+  right: 25px; /* Distance from right */
+  z-index: 999; /* On top of other elements */
+  background-color: #004080; /* Milestone-style blue */
+  color: white;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Circular */
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+}
+
+#scrollTopBtn:hover {
+  background-color: #00264d;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  #scrollTopBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+/* Preloader Styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff; /* A solid white background */
+  z-index: 9999; /* Ensures it's on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.75s ease, visibility 0.75s ease;
+}
+
+#spinner {
+  border: 8px solid #f3f3f3; /* Light grey circle */
+  border-top: 8px solid #06b6d4; /* Your turquoise color */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+/* The class that JavaScript will add to hide the preloader */
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Keyframe animation for the spinning effect */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+/* Delay Classes */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-1000 { animation-delay: 1s; }
+
+/* Enhanced Scroll to Top Button */
+#scrollTopBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#scrollTopBtn.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+}

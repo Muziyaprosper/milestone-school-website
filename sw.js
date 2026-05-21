@@ -1,6 +1,6 @@
-const STATIC_CACHE = 'milestone-static-v1.1.0';
-const PAGE_CACHE = 'milestone-pages-v1.1.0';
-const RUNTIME_CACHE = 'milestone-runtime-v1.1.0';
+const STATIC_CACHE = 'milestone-static-v1.1.1';
+const PAGE_CACHE = 'milestone-pages-v1.1.1';
+const RUNTIME_CACHE = 'milestone-runtime-v1.1.1';
 
 const PRECACHE_URLS = [
   '/',
@@ -86,6 +86,21 @@ self.addEventListener('fetch', (event) => {
 
   const requestUrl = new URL(request.url);
   if (requestUrl.origin !== self.location.origin) return;
+
+  const pathname = decodeURIComponent(requestUrl.pathname).toLowerCase();
+  const bypassCache =
+    pathname.endsWith('/staff.html') ||
+    pathname.endsWith('/assets/mr. prosper muziya.jpg') ||
+    pathname.endsWith('/assets/mr prosper muziya.jpg') ||
+    pathname.endsWith('/assets/mr-prosper-muziya.jpg') ||
+    pathname.endsWith('/assets/mr majata.jpg') ||
+    pathname.endsWith('/assets/mr. majata.jpg') ||
+    pathname.endsWith('/assets/mr-majata.jpg');
+
+  if (bypassCache) {
+    event.respondWith(fetch(request));
+    return;
+  }
 
   if (request.headers.has('range') || /\.(?:mp4|webm|ogg)$/i.test(requestUrl.pathname)) {
     return;
