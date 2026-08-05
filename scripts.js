@@ -538,22 +538,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let nextIndex = 1;
     let isTransitioning = false;
-    
-    // Preload only the next image
-    function preloadNext() {
-      const img = new Image();
-      img.src = images[nextIndex];
+    const fadeDuration = 1000;
+
+    function preloadImage(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = async () => {
+          try { await img.decode(); } catch (_) { /* image is still usable */ }
+          resolve();
+        };
+        img.onerror = resolve;
+        img.src = src;
+      });
     }
-    
-    // Preload first next image
-    preloadNext();
-    
-    setInterval(() => {
+
+    async function showNextSlide() {
       if (isTransitioning) return;
       isTransitioning = true;
 
-      slideNext.src = images[nextIndex];
-      slideNext.alt = `Milestone School slideshow image ${nextIndex + 1}`;
+      const src = images[nextIndex];
+      const alt = `Milestone School slideshow image ${nextIndex + 1}`;
+      await preloadImage(src);
+      slideNext.src = src;
+      slideNext.alt = alt;
 
       requestAnimationFrame(() => {
         slideNext.classList.remove('opacity-0');
@@ -562,19 +569,19 @@ document.addEventListener('DOMContentLoaded', () => {
         slideshow.classList.add('opacity-0');
       });
 
-      setTimeout(() => {
-        slideshow.src = images[nextIndex];
-        slideshow.alt = slideNext.alt;
+      window.setTimeout(() => {
+        slideshow.src = src;
+        slideshow.alt = alt;
         slideshow.classList.remove('opacity-0');
         slideshow.classList.add('opacity-100');
         slideNext.classList.remove('opacity-100');
         slideNext.classList.add('opacity-0');
-
         nextIndex = (nextIndex + 1) % images.length;
-        preloadNext();
         isTransitioning = false;
-      }, 700);
-    }, 5000);
+      }, fadeDuration);
+    }
+
+    window.setInterval(showNextSlide, 5000);
   }
   
   initSlideshow();

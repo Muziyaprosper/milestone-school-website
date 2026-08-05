@@ -41,12 +41,38 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <script src="scripts.js" defer></script>
+  <style>
+    .portfolio-shell > nav { order: -1; }
+    .portfolio-hero-intro > span,
+    .portfolio-hero-intro > h2 { display: none !important; }
+    .muziya-whatsapp-float {
+      position: fixed !important;
+      left: 1.5rem !important;
+      right: auto !important;
+      bottom: 1.5rem !important;
+      z-index: 9999 !important;
+    }
+
+    #main-content {
+      padding-top: 0 !important;
+    }
+
+    .portfolio-shell {
+      margin-top: 0 !important;
+    }
+
+    /* Keep the single floating WhatsApp shortcut on the left; the contact
+       column does not need a second floating-style WhatsApp card. */
+    #contact-portfolio > .grid > div:last-child > .space-y-4 > div:first-child {
+      display: none !important;
+    }
+  </style>
 </head>
 <body class="bg-cover bg-center bg-no-repeat bg-fixed" style="background-image: linear-gradient(135deg, rgba(2, 6, 23, 0.88), rgba(15, 23, 42, 0.72)), url('assets/Mr. Muziya Background.jpg'); background-blend-mode: overlay;" data-nav-parent="staff.html">
   <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">Skip to main content</a>
 
   <div class="min-h-screen bg-slate-950/55">
-    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/90 supports-backdrop-blur:bg-white/95 shadow-soft">
+    <header class="hidden sticky top-0 z-50 backdrop-blur-lg bg-white/90 supports-backdrop-blur:bg-white/95 shadow-soft" aria-hidden="true">
       <nav class="container mx-auto px-4 sm:px-6 py-3" aria-label="Main navigation">
         <div class="flex items-center justify-between">
           <a href="index.html" class="flex items-center space-x-3 group">
@@ -197,7 +223,7 @@
       .portfolio-surface {
         background: var(--portfolio-surface);
         border: 1px solid var(--portfolio-border);
-        box-shadow: 0 20px 45px rgba(2, 6, 23, 0.14);
+        box-shadow: 0 16px 36px rgba(2, 6, 23, 0.1);
         backdrop-filter: blur(18px);
       }
 
@@ -206,6 +232,194 @@
         border: 1px solid var(--portfolio-border);
         box-shadow: 0 18px 45px rgba(2, 6, 23, 0.12);
         backdrop-filter: blur(18px);
+      }
+
+      .portfolio-shell > section:not(#portfolio-hero) {
+        border-radius: 1.5rem;
+        scroll-margin-top: 6rem;
+      }
+
+      #experience-portfolio {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.88));
+      }
+
+      #business-portfolio {
+        background: linear-gradient(135deg, rgba(236, 253, 245, 0.94), rgba(255, 251, 235, 0.9));
+      }
+
+      #projects {
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      #contact-portfolio {
+        margin-top: 1rem;
+        background: linear-gradient(135deg, rgba(239, 246, 255, 0.96), rgba(255, 255, 255, 0.94));
+      }
+
+      .portfolio-skill-tag {
+        display: inline-flex;
+        align-items: center;
+        min-height: 3rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid rgba(26, 95, 122, 0.14);
+        border-radius: 0.875rem;
+        background: rgba(26, 95, 122, 0.06);
+        color: #1a5f7a;
+        font-size: 0.875rem;
+        font-weight: 700;
+      }
+
+      .portfolio-nav-links a {
+        white-space: nowrap;
+      }
+
+      @media (min-width: 768px) {
+        #portfolio-hero .mx-auto.grid {
+          grid-template-columns: minmax(15rem, 0.8fr) minmax(0, 1.2fr);
+          grid-template-rows: auto auto auto auto auto auto;
+        }
+
+        #portfolio-hero .mx-auto.grid > div:first-child {
+          grid-column: 1 / -1;
+          grid-row: 1;
+          align-self: center;
+          justify-self: center;
+        }
+
+        #portfolio-hero .mx-auto.grid > span {
+          grid-column: 1 / -1;
+          grid-row: 3;
+          justify-self: center;
+        }
+
+        #portfolio-hero .portfolio-hero-name {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-self: center;
+        }
+
+        #portfolio-hero .portfolio-hero-intro {
+          display: contents;
+        }
+
+        #portfolio-hero #typing-text {
+          grid-column: 1 / -1;
+          grid-row: 4;
+          align-self: center;
+          margin-bottom: 0;
+          text-align: center;
+        }
+
+        #portfolio-hero .portfolio-about-card,
+        #portfolio-hero .portfolio-primary-actions,
+        #portfolio-hero .portfolio-communication,
+        #portfolio-hero .portfolio-metrics {
+          grid-column: 1 / -1;
+        }
+
+        #portfolio-hero .portfolio-about-card { grid-row: 5; }
+        #portfolio-hero .portfolio-primary-actions {
+          grid-row: 6;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          justify-items: center;
+        }
+        #portfolio-hero .portfolio-primary-actions a,
+        #portfolio-hero .portfolio-communication a,
+        #portfolio-hero .portfolio-communication button {
+          justify-content: center;
+          white-space: nowrap;
+        }
+        #portfolio-hero .portfolio-communication {
+          grid-row: 7;
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          justify-items: center;
+        }
+        #portfolio-hero .portfolio-metrics {
+          grid-row: 8;
+        }
+      }
+
+      @media (max-width: 767px) {
+        #portfolio-hero .mx-auto.grid {
+          grid-template-columns: 1fr;
+        }
+
+        #portfolio-hero .portfolio-hero-intro {
+          display: contents;
+        }
+
+        #portfolio-hero .mx-auto.grid > div:first-child { grid-row: 1; }
+        #portfolio-hero .portfolio-hero-name { grid-row: 2; }
+        #portfolio-hero .mx-auto.grid > span { grid-row: 3; }
+        #portfolio-hero #typing-text { grid-row: 4; }
+        #portfolio-hero .portfolio-about-card { grid-row: 5; }
+        #portfolio-hero .portfolio-primary-actions { grid-row: 6; }
+        #portfolio-hero .portfolio-communication { grid-row: 7; }
+        #portfolio-hero .portfolio-metrics { grid-row: 8; }
+
+        .portfolio-nav-links.is-open {
+          display: flex;
+          min-width: 0;
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          padding-top: 0.75rem;
+        }
+
+        .portfolio-nav-links.is-open a {
+          width: 100%;
+          text-align: left;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .portfolio-shell > nav {
+          top: 0;
+        }
+      }
+
+      /* Stable hero composition: keep the existing nested content in normal flow. */
+      #portfolio-hero .mx-auto.grid {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #portfolio-hero .portfolio-hero-intro {
+        display: block !important;
+        width: 100%;
+        text-align: center;
+      }
+
+      #portfolio-hero .portfolio-hero-intro > span,
+      #portfolio-hero .portfolio-hero-intro > h2,
+      #portfolio-hero .portfolio-hero-intro > p.hidden {
+        display: none !important;
+      }
+
+      #portfolio-hero .portfolio-about-card,
+      #portfolio-hero .portfolio-primary-actions,
+      #portfolio-hero .portfolio-communication,
+      #portfolio-hero .portfolio-metrics {
+        width: 100%;
+      }
+
+      #portfolio-hero .portfolio-primary-actions,
+      #portfolio-hero .portfolio-communication {
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: center;
+        text-align: center;
+      }
+
+      @media (max-width: 767px) {
+        #portfolio-hero .portfolio-primary-actions,
+        #portfolio-hero .portfolio-communication {
+          flex-wrap: wrap;
+        }
       }
 
       .portfolio-heading {
@@ -494,7 +708,7 @@
             <div class="flex flex-col justify-center p-8 md:p-10 lg:p-12">
               <div class="max-w-3xl">
                 <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">School Leadership</span>
-                <h1 class="mt-5 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">Mr. Prosper Muziya</h1>
+                <h2 class="mt-5 text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">Mr. Prosper Muziya</h2>
                 <p class="mt-3 text-lg font-semibold text-primary">Head of ICT Department and Administrative Assistant</p>
                 <p class="mt-6 text-base leading-8 text-slate-700">
                   Mr. Muziya serves as the Head of the ICT Department and Administrative Assistant at Milestone School. He coordinates ICT instruction, manages digital systems, and supports administrative operations that sustain effective teaching and learning.
@@ -662,24 +876,36 @@
         </section>
       </section>
 
-      <section class="mx-auto mt-12 max-w-7xl space-y-8 portfolio-shell">
+      <section class="mx-auto mt-12 flex max-w-7xl flex-col space-y-8 portfolio-shell">
         <section id="portfolio-hero" class="portfolio-surface-strong overflow-hidden rounded-[2rem]" data-aos="fade-up">
           <div class="relative p-8 md:p-12 lg:p-16">
             <div class="float-orb -left-8 top-10 h-28 w-28 bg-primary/20"></div>
             <div class="float-orb right-8 top-12 h-24 w-24 bg-secondary/25"></div>
-            <div class="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <div class="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
               <div class="rounded-full bg-white p-2 shadow-2xl ring-1 ring-slate-200/80">
                 <div class="relative h-40 w-40 overflow-hidden rounded-full sm:h-48 sm:w-48">
                   <img src="assets/mr-prosper-muziya.jpg" alt="Prosper Muziya" class="h-full w-full object-cover object-center" width="900" height="1100" loading="eager">
                 </div>
               </div>
-              <span class="mt-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-primary">Zambian ICT Educator · Entrepreneur · Digital Creative</span>
-              <h2 class="portfolio-heading name-block-heading mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Prosper Muziya</h2>
+              <span class="mt-6 inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-center text-xs font-bold uppercase tracking-[0.2em] text-primary">Zambian ICT Educator · Entrepreneur · Digital Creative</span>
+              <h1 class="portfolio-hero-name portfolio-heading name-block-heading mt-5 text-center text-4xl font-extrabold tracking-tight sm:text-5xl">Prosper Muziya</h1>
+              <div class="portfolio-hero-intro text-center lg:text-left">
+              <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-primary">Zambian ICT Educator · Entrepreneur · Digital Creative</span>
+              <h2 class="hidden portfolio-heading name-block-heading mt-5 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Prosper Muziya</h2>
               <p id="typing-text" class="typing-caret mt-4 text-lg font-semibold text-primary md:text-xl"></p>
-              <p class="mt-6 max-w-2xl text-base leading-8 text-slate-700 md:text-lg">
+              <p class="hidden mt-5 max-w-3xl text-justify text-base leading-8 text-slate-700 md:text-lg">
                 Hello, I’m Prosper Muziya, a Zambian ICT educator, entrepreneur, programmer, and digital creative passionate about technology, Artificial Intelligence, education, and innovation. I combine teaching, business, digital creativity, and modern technology to help learners, businesses, and communities grow in the digital world.
               </p>
-              <div class="mt-8 flex flex-wrap justify-center gap-3">
+              <div class="portfolio-about-card mt-5 rounded-2xl border border-primary/10 bg-white/60 p-5 text-left shadow-soft">
+                <p class="text-xs font-bold uppercase tracking-[0.24em] text-primary">About Prosper</p>
+                <div class="mt-2 space-y-4 text-justify text-sm leading-7 text-slate-700">
+                  <p>Hello, I’m Prosper Muziya, a Zambian ICT educator, entrepreneur, programmer, and digital creative with a passion for technology, artificial intelligence, education, and innovation. I combine teaching, business, digital creativity, and modern technology to help learners, businesses, and communities grow in the digital world.</p>
+                  <p>I currently serve as Head of the ICT Department and Administrative Assistant at Milestone School in Kabwe, Zambia. I teach ICT to learners in Grades 2–7 using practical and blended learning methods, while also supporting school operations, digital systems, workflow management, and educational technology integration.</p>
+                  <p>I am also the founder of <span class="font-semibold text-primary">The Future</span>, an initiative focused on educational materials, technology services, digital creativity, innovation, branding, laptop sales, website design, and social media management.</p>
+                  <p>With a deep interest in artificial intelligence and modern digital tools, I aim to make technology simple, accessible, and useful for learners, businesses, and everyday users.</p>
+                </div>
+              </div>
+              <div class="portfolio-primary-actions mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
                 <a href="#projects" class="inline-flex items-center rounded-full bg-gradient-to-r from-primary to-teal-500 px-6 py-3 text-sm font-bold text-white shadow-hard transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
                   <i class="fas fa-briefcase mr-2"></i>View Portfolio
                 </a>
@@ -693,7 +919,7 @@
                   <i class="fas fa-download mr-2"></i>Download CV
                 </a>
               </div>
-              <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <div class="portfolio-communication mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <a href="https://wa.me/260972712158" target="_blank" rel="noopener noreferrer" class="glass-link inline-flex items-center rounded-full bg-green-500 px-5 py-3 text-sm font-bold text-white shadow-hard hover:bg-green-600">
                   <i class="fab fa-whatsapp mr-2 text-lg"></i>WhatsApp
                 </a>
@@ -707,7 +933,7 @@
                   <i class="fas fa-paper-plane mr-2"></i>Service Inquiry
                 </button>
               </div>
-              <div class="mt-10 grid w-full gap-4 sm:grid-cols-3">
+              <div class="portfolio-metrics mt-10 grid w-full gap-4 sm:grid-cols-3">
                 <div class="rounded-2xl border border-white/60 bg-white/70 p-5 shadow-soft">
                   <p class="text-3xl font-extrabold text-primary" data-counter="13">0</p>
                   <p class="mt-1 text-sm text-slate-600">Skill areas</p>
@@ -721,13 +947,21 @@
                   <p class="mt-1 text-sm text-slate-600">Service categories</p>
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <nav class="sticky top-24 z-30 hidden rounded-full border border-white/40 bg-white/80 px-4 py-3 shadow-soft backdrop-blur-lg lg:block" aria-label="Portfolio sections">
-          <div class="flex flex-wrap items-center justify-center gap-2 text-sm font-semibold">
-            <a href="#about-portfolio" class="rounded-full px-4 py-2 text-slate-700 transition hover:bg-primary/10 hover:text-primary">About</a>
+        <nav class="order-first sticky top-4 z-30 flex overflow-x-auto rounded-full border border-white/40 bg-white/80 px-4 py-3 shadow-soft backdrop-blur-lg" aria-label="Portfolio sections">
+          <button id="portfolio-menu-toggle" type="button" class="mr-3 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 md:hidden" aria-expanded="false" aria-controls="portfolio-nav-links" aria-label="Open portfolio navigation">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+          </button>
+          <div id="portfolio-nav-links" class="portfolio-nav-links hidden min-w-max items-center justify-center gap-2 text-sm font-semibold md:flex">
+            <a href="index.html" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 font-bold text-slate-800 shadow-sm transition hover:border-slate-300 hover:bg-slate-50">
+              <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#d4a017] text-slate-950"><i class="fas fa-arrow-left text-xs" aria-hidden="true"></i></span>
+              <span>Back to Website</span>
+            </a>
+            <a href="#portfolio-hero" class="rounded-full px-4 py-2 text-slate-700 transition hover:bg-primary/10 hover:text-primary">About</a>
             <a href="#experience-portfolio" class="rounded-full px-4 py-2 text-slate-700 transition hover:bg-primary/10 hover:text-primary">Experience</a>
             <a href="#business-portfolio" class="rounded-full px-4 py-2 text-slate-700 transition hover:bg-primary/10 hover:text-primary">The Future</a>
             <a href="#skills-portfolio" class="rounded-full px-4 py-2 text-slate-700 transition hover:bg-primary/10 hover:text-primary">Skills</a>
@@ -739,7 +973,7 @@
           </div>
         </nav>
 
-        <section id="about-portfolio" class="portfolio-surface rounded-[2rem] p-8 md:p-10" data-aos="fade-up">
+        <section id="about-portfolio" class="hidden portfolio-surface rounded-[2rem] p-8 md:p-10" data-aos="fade-up" aria-hidden="true">
           <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
             <div>
               <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-primary">About Prosper</span>
@@ -829,13 +1063,13 @@
                   <li>Assisted in streamlining administrative operations</li>
                 </ul>
               </div>
-              <div class="rounded-2xl bg-white p-6 shadow-hard ring-1 ring-slate-200/70">
+              <div class="rounded-2xl border border-primary/10 bg-primary/5 p-6">
                 <p class="font-bold text-slate-900">Professional outcomes</p>
-                <div class="mt-5 space-y-4">
-                  <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Digital readiness</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 92%;"></div></div></div>
-                  <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Workflow efficiency</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 88%;"></div></div></div>
-                  <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>ICT practical learning</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 95%;"></div></div></div>
-                </div>
+                <ul class="mt-5 space-y-3 text-sm leading-7 text-slate-700">
+                  <li><i class="fas fa-check mr-2 text-primary"></i>Stronger digital readiness across teaching and administration</li>
+                  <li><i class="fas fa-check mr-2 text-primary"></i>More consistent document and workflow systems</li>
+                  <li><i class="fas fa-check mr-2 text-primary"></i>More practical, accessible ICT learning experiences</li>
+                </ul>
               </div>
               <div class="md:col-span-2 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 p-6 ring-1 ring-primary/10">
                 <p class="font-semibold text-slate-900">Digital focus</p>
@@ -857,6 +1091,7 @@
             </button>
           </div>
           <div class="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <p class="sm:col-span-2 xl:col-span-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-[0.24em] text-primary">Technology</p>
             <div class="dashboard-service-card dashboard-service-card--dark">
               <i class="fas fa-laptop text-secondary"></i>
               <p class="dashboard-service-title">Laptop Sales</p>
@@ -867,6 +1102,7 @@
               <p class="dashboard-service-title text-slate-900">Smartphone Sales</p>
               <p class="dashboard-service-text">Affordable mobile technology options.</p>
             </div>
+            <p class="sm:col-span-2 xl:col-span-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-[0.24em] text-primary">Education &amp; Creative Services</p>
             <div class="dashboard-service-card">
               <i class="fas fa-book-open text-primary"></i>
               <p class="dashboard-service-title text-slate-900">Educational Pamphlets</p>
@@ -897,6 +1133,7 @@
               <p class="dashboard-service-title text-slate-900">Printing Services</p>
               <p class="dashboard-service-text">Fast printing for school and business use.</p>
             </div>
+            <p class="sm:col-span-2 xl:col-span-3 border-b border-slate-200 pb-2 text-xs font-bold uppercase tracking-[0.24em] text-primary">Digital Services</p>
             <div class="dashboard-service-card">
               <i class="fas fa-robot text-primary"></i>
               <p class="dashboard-service-title text-slate-900">AI Awareness & Training</p>
@@ -925,13 +1162,13 @@
             <span class="inline-flex items-center rounded-full bg-primary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-primary">Skills</span>
             <h2 class="portfolio-heading mt-5 text-3xl font-bold text-slate-900 md:text-4xl">Technology skills and digital capability</h2>
             <p class="mt-4 text-slate-700">Core tools and competencies that support ICT teaching, digital content production, business branding, and administrative coordination.</p>
-            <div class="mt-8 space-y-5">
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Computer Programming</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 92%;"></div></div></div>
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Web Development</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 90%;"></div></div></div>
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Graphic Design</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 88%;"></div></div></div>
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Artificial Intelligence Tools</span><span>91%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 91%;"></div></div></div>
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>ICT Systems Management</span><span>89%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 89%;"></div></div></div>
-              <div><div class="mb-2 flex items-center justify-between text-sm font-semibold text-slate-700"><span>Administrative Coordination</span><span>87%</span></div><div class="skill-track"><div class="skill-fill" data-skill-fill style="--skill-width: 87%;"></div></div></div>
+            <div class="mt-8 grid gap-3 sm:grid-cols-2">
+              <span class="portfolio-skill-tag">Programming & web development</span>
+              <span class="portfolio-skill-tag">Graphic design & branding</span>
+              <span class="portfolio-skill-tag">Artificial intelligence tools</span>
+              <span class="portfolio-skill-tag">ICT systems management</span>
+              <span class="portfolio-skill-tag">Administrative coordination</span>
+              <span class="portfolio-skill-tag">Educational technology</span>
             </div>
             <div class="mt-8">
               <p class="font-semibold text-slate-900">Skills snapshot</p>
@@ -1093,7 +1330,7 @@
 
         <section id="blog-portfolio" class="portfolio-surface rounded-[2rem] p-8 md:p-10" data-aos="fade-up">
           <span class="inline-flex items-center rounded-full bg-secondary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-secondary">Blog</span>
-          <h2 class="portfolio-heading mt-5 text-3xl font-bold text-slate-900 md:text-4xl">Sample article previews</h2>
+          <h2 class="portfolio-heading mt-5 text-3xl font-bold text-slate-900 md:text-4xl">Insights &amp; Articles</h2>
           <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             <article class="rounded-2xl bg-white p-5 shadow-hard ring-1 ring-slate-200/70"><p class="text-sm font-semibold text-primary">AI for Beginners</p><h3 class="mt-2 text-lg font-bold text-slate-900">Start using AI safely and productively</h3><p class="mt-3 text-sm leading-7 text-slate-600">Simple ideas for learners and families who want to understand AI without the confusion.</p></article>
             <article class="rounded-2xl bg-white p-5 shadow-hard ring-1 ring-slate-200/70"><p class="text-sm font-semibold text-primary">ICT Tips for Students</p><h3 class="mt-2 text-lg font-bold text-slate-900">Practical habits for better digital learning</h3><p class="mt-3 text-sm leading-7 text-slate-600">Tips that make technology easier to use in the classroom and at home.</p></article>
@@ -1108,9 +1345,9 @@
             <blockquote class="mt-5 text-2xl font-semibold leading-10 text-slate-900">“Prosper believes students learn best through practical activities, real-world technology exposure, creativity, experimentation, and simple explanations of complex concepts. He believes technology should be accessible, useful, and inspiring to everyone.”</blockquote>
             <p class="mt-5 text-slate-700">That approach shapes his teaching style, his content creation, and the way he builds tools for schools and businesses.</p>
           </div>
-          <div class="portfolio-surface rounded-[2rem] p-8 md:p-10">
+          <div class="hidden portfolio-surface rounded-[2rem] p-8 md:p-10" aria-hidden="true">
             <span class="inline-flex items-center rounded-full bg-secondary/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-secondary">Testimonials</span>
-            <h3 class="portfolio-heading mt-5 text-3xl font-bold text-slate-900 md:text-4xl">Placeholder reviews</h3>
+            <h3 class="portfolio-heading mt-5 text-3xl font-bold text-slate-900 md:text-4xl">Testimonials</h3>
             <div class="mt-6 grid gap-4 md:grid-cols-2">
               <div class="rounded-2xl bg-white p-5 shadow-hard ring-1 ring-slate-200/70"><p class="text-sm italic text-slate-600">“Prosper makes technology feel simple and useful for learners.”</p><p class="mt-4 text-sm font-bold text-slate-900">Parent</p></div>
               <div class="rounded-2xl bg-white p-5 shadow-hard ring-1 ring-slate-200/70"><p class="text-sm italic text-slate-600">“His ICT lessons are practical and easy to follow.”</p><p class="mt-4 text-sm font-bold text-slate-900">Student</p></div>
@@ -1128,11 +1365,11 @@
               <p class="mt-4 text-slate-700">For ICT training, graphic design, branding, printing, website design, AI workshops, or digital support, use the form below or reach out directly on WhatsApp.</p>
               <form id="contactForm" class="mt-8 grid gap-4 rounded-3xl bg-white p-6 shadow-hard ring-1 ring-slate-200/70">
                 <div class="grid gap-4 md:grid-cols-2">
-                  <input type="text" name="name" placeholder="Your name" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-primary" required>
-                  <input type="email" name="email" placeholder="Email address" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-primary" required>
+                  <label class="grid gap-2 text-sm font-semibold text-slate-700">Name<input type="text" name="name" autocomplete="name" placeholder="Your name" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal text-slate-900 outline-none transition focus:border-primary" required></label>
+                  <label class="grid gap-2 text-sm font-semibold text-slate-700">Email<input type="email" name="email" autocomplete="email" placeholder="Email address" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal text-slate-900 outline-none transition focus:border-primary" required></label>
                 </div>
-                <input type="text" name="service" placeholder="Service you need" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-primary">
-                <textarea name="message" rows="5" placeholder="Tell me about your project or inquiry" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-primary" required></textarea>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">Service<input type="text" name="service" placeholder="Service you need" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal text-slate-900 outline-none transition focus:border-primary"></label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">Message<textarea name="message" rows="5" placeholder="Tell me about your project or inquiry" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal text-slate-900 outline-none transition focus:border-primary" required></textarea></label>
                 <div class="flex flex-wrap gap-3">
                   <button type="submit" class="inline-flex items-center rounded-full bg-gradient-to-r from-green-500 to-green-600 px-6 py-3 text-sm font-bold text-white shadow-hard transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
                     <i class="fab fa-whatsapp mr-2 text-lg"></i>Send via WhatsApp
@@ -1208,9 +1445,9 @@
               </button>
             </div>
             <form id="inquiryForm" class="mt-6 grid gap-4">
-              <input type="text" name="name" placeholder="Your name" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-primary" required>
-              <input type="text" name="service" placeholder="Service of interest" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-primary" required>
-              <textarea name="message" rows="4" placeholder="Short project or service description" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-primary" required></textarea>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">Name<input type="text" name="name" autocomplete="name" placeholder="Your name" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal outline-none focus:border-primary" required></label>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">Service<input type="text" name="service" placeholder="Service of interest" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal outline-none focus:border-primary" required></label>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">Message<textarea name="message" rows="4" placeholder="Short project or service description" class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-normal outline-none focus:border-primary" required></textarea></label>
               <div class="flex flex-wrap gap-3">
                 <button type="submit" class="inline-flex items-center rounded-full bg-green-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-green-600">
                   <i class="fab fa-whatsapp mr-2"></i>Send on WhatsApp
@@ -1379,7 +1616,7 @@
         </p>
       </div>
     </div>
-    <a href="https://wa.me/260972712158" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Prosper Muziya" class="fixed bottom-6 left-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-hard ring-4 ring-green-400/20 animate-float transition-all duration-300 hover:scale-110 hover:bg-green-600">
+    <a href="https://wa.me/260972712158" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Prosper Muziya" class="muziya-whatsapp-float inline-flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-hard ring-4 ring-green-400/20 animate-float transition-all duration-300 hover:scale-110 hover:bg-green-600">
       <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
     </a>
     <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group" aria-label="Scroll to top">
@@ -1492,6 +1729,70 @@
     counters.forEach((counter) => viewportObserver.observe(counter));
     skillBars.forEach((bar) => viewportObserver.observe(bar));
 
+    const portfolioMenuToggle = document.getElementById('portfolio-menu-toggle');
+    const portfolioNavLinks = document.getElementById('portfolio-nav-links');
+    portfolioMenuToggle?.addEventListener('click', () => {
+      const isOpen = portfolioNavLinks?.classList.toggle('is-open');
+      portfolioMenuToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+      portfolioMenuToggle.querySelector('i')?.classList.toggle('fa-bars', !isOpen);
+      portfolioMenuToggle.querySelector('i')?.classList.toggle('fa-xmark', Boolean(isOpen));
+    });
+
+    const portfolioLinks = [...document.querySelectorAll('#portfolio-nav-links a[href^="#"]')];
+    const portfolioSections = portfolioLinks
+      .map((link) => document.querySelector(link.getAttribute('href')))
+      .filter(Boolean);
+
+    const setActivePortfolioLink = (id) => {
+      portfolioLinks.forEach((link) => {
+        const active = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('bg-primary/10', active);
+        link.classList.toggle('text-primary', active);
+        link.setAttribute('aria-current', active ? 'page' : 'false');
+      });
+    };
+
+    if (portfolioSections.length) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActivePortfolioLink(visible.target.id);
+      }, { rootMargin: '-18% 0px -65% 0px', threshold: [0.1, 0.35, 0.6] });
+
+      portfolioSections.forEach((section) => sectionObserver.observe(section));
+    }
+
+    portfolioLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        portfolioNavLinks?.classList.remove('is-open');
+        portfolioMenuToggle?.setAttribute('aria-expanded', 'false');
+        const icon = portfolioMenuToggle?.querySelector('i');
+        icon?.classList.add('fa-bars');
+        icon?.classList.remove('fa-xmark');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!portfolioNavLinks?.classList.contains('is-open')) return;
+      if (portfolioNavLinks.contains(event.target) || portfolioMenuToggle?.contains(event.target)) return;
+      portfolioNavLinks.classList.remove('is-open');
+      portfolioMenuToggle?.setAttribute('aria-expanded', 'false');
+      const icon = portfolioMenuToggle?.querySelector('i');
+      icon?.classList.add('fa-bars');
+      icon?.classList.remove('fa-xmark');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape' || !portfolioNavLinks?.classList.contains('is-open')) return;
+      portfolioNavLinks.classList.remove('is-open');
+      portfolioMenuToggle?.setAttribute('aria-expanded', 'false');
+      const icon = portfolioMenuToggle?.querySelector('i');
+      icon?.classList.add('fa-bars');
+      icon?.classList.remove('fa-xmark');
+      portfolioMenuToggle?.focus();
+    });
+
     const previewModal = document.getElementById('previewModal');
     const previewTitle = document.getElementById('previewTitle');
     const previewDescription = document.getElementById('previewDescription');
@@ -1598,4 +1899,3 @@
   </script>
 </body>
 </html>
-
