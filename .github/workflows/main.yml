@@ -1,4 +1,4 @@
-name: Deploy to cPanel to public_html for milestoneschoolzambia.com
+name: Deploy to cPanel
 
 on:
   push:
@@ -13,21 +13,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Ensure cPanel target exists
+      - name: Ensure cPanel SSH target exists
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USERNAME }}
-          password: ${{ secrets.CPANEL_PASSWORD }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
           port: ${{ secrets.CPANEL_PORT || 22 }}
-          script: mkdir -p "${{ secrets.CPANEL_PUBLIC_HTML }}"
+          script: |
+            mkdir -p "${{ secrets.CPANEL_PUBLIC_HTML }}"
 
-      - name: Deploy to cPanel public_html
+      - name: Deploy files to cPanel public_html
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USERNAME }}
-          password: ${{ secrets.CPANEL_PASSWORD }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
           port: ${{ secrets.CPANEL_PORT || 22 }}
           source: "."
           target: ${{ secrets.CPANEL_PUBLIC_HTML }}
