@@ -13,25 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Ensure cPanel SSH target exists
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Deploy files to cPanel public_html via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          host: ${{ secrets.CPANEL_HOST }}
-          username: ${{ secrets.CPANEL_USERNAME }}
-          key: ${{ secrets.CPANEL_SSH_KEY }}
-          port: ${{ secrets.CPANEL_PORT || 22 }}
-          script: |
-            mkdir -p "${{ secrets.CPANEL_PUBLIC_HTML }}"
-
-      - name: Deploy files to cPanel public_html
-        uses: appleboy/scp-action@v1
-        with:
-          host: ${{ secrets.CPANEL_HOST }}
-          username: ${{ secrets.CPANEL_USERNAME }}
-          key: ${{ secrets.CPANEL_SSH_KEY }}
-          port: ${{ secrets.CPANEL_PORT || 22 }}
-          source: "."
-          target: ${{ secrets.CPANEL_PUBLIC_HTML }}
-          strip_components: 0
-          rm: true
+          server: www.milestoneschoolzambia.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          ssh_private_key: ""
+          port: 22
+          sftp_only: true
+          local_path: "./*"
+          remote_path: "/home/mileston/public_html"
 
