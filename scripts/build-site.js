@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const { minify: minifyHtml } = require("html-minifier-terser");
 const { minify: minifyJs } = require("terser");
 const CleanCSS = require("clean-css");
 
@@ -11,6 +10,9 @@ const OUT = path.join(ROOT, "public");
 // package.json, configs, docs) stays out of the deployed site.
 const COPY_ITEMS = ["assets", "manifest.json", "favicon.ico", "robots.txt", "sitemap.xml", ".htaccess"];
 const JS_FILES = ["scripts.js", "cookie-consent.js", "sw.js"];
+// Front controller + layout partials/page templates: copied verbatim, never
+// run through an HTML minifier since it doesn't understand PHP tags.
+const PHP_ITEMS = ["index.php", "includes", "pages"];
 
 async function build() {
   fs.rmSync(OUT, { recursive: true, force: true });
@@ -46,20 +48,14 @@ async function build() {
     fs.writeFileSync(path.join(OUT, file), result.code);
   }
 
-  const htmlFiles = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html"));
-  for (const file of htmlFiles) {
-    const code = fs.readFileSync(path.join(ROOT, file), "utf8");
-    const minified = await minifyHtml(code, {
-      collapseWhitespace: true,
-      removeComments: true,
-      removeEmptyAttributes: true,
-      minifyCSS: true,
-      minifyJS: true,
-    });
-    fs.writeFileSync(path.join(OUT, file), minified);
+  for (const item of PHP_ITEMS) {
+    const src = path.join(ROOT, item);
+    if (fs.existsSync(src)) {
+      fs.cpSync(src, path.join(OUT, item), { recursive: true });
+    }
   }
 
-  console.log(`Built ${htmlFiles.length} HTML file(s) and ${JS_FILES.length} JS file(s) into ${OUT}`);
+  console.log(`Built ${PHP_ITEMS.length} PHP item(s) and ${JS_FILES.length} JS file(s) into ${OUT}`);
 }
 
 build().catch((err) => {

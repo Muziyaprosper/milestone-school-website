@@ -1,6 +1,7 @@
 @echo off
-REM Simple batch script to start local server (Python only)
-REM This is a simpler version that only uses Python
+REM Simple batch script to start the local PHP dev server.
+REM This site is PHP-driven (index.php front controller), so PHP is required -
+REM Python's http.server cannot execute it.
 REM Server will be accessible on localhost and on your local network
 
 echo ========================================
@@ -41,33 +42,19 @@ echo Press Ctrl+C to stop the server
 echo ========================================
 echo.
 
-REM Try Python 3 first
-python --version >nul 2>&1
+where php >nul 2>&1
 if %errorlevel% == 0 (
-    echo [INFO] Using Python HTTP Server...
+    echo [INFO] Using PHP built-in server with router.php...
     echo [INFO] Server accessible at: http://%LOCAL_IP%:%PORT%
     echo.
     start "" "%URL%"
     timeout /t 2 /nobreak >nul
-    python -m http.server %PORT% --bind %HOST%
+    php -S %HOST%:%PORT% router.php
     goto :end
 )
 
-REM Try Python 2
-python2 --version >nul 2>&1
-if %errorlevel% == 0 (
-    echo [INFO] Using Python 2 HTTP Server...
-    echo [WARNING] Python 2 may have limited network access
-    echo [INFO] Server accessible at: http://%LOCAL_IP%:%PORT%
-    echo.
-    start "" "%URL%"
-    timeout /t 2 /nobreak >nul
-    python2 -m SimpleHTTPServer %PORT%
-    goto :end
-)
-
-echo [ERROR] Python is not installed!
-echo Please install Python from https://www.python.org/downloads/
+echo [ERROR] PHP is not installed!
+echo Please install PHP from https://www.php.net/downloads.php
 echo.
 pause
 exit /b 1

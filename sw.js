@@ -1,10 +1,9 @@
-const STATIC_CACHE = 'milestone-static-v1.1.1';
-const PAGE_CACHE = 'milestone-pages-v1.1.1';
-const RUNTIME_CACHE = 'milestone-runtime-v1.1.1';
+const STATIC_CACHE = 'milestone-static-v1.2.0';
+const PAGE_CACHE = 'milestone-pages-v1.2.0';
+const RUNTIME_CACHE = 'milestone-runtime-v1.2.0';
 
 const PRECACHE_URLS = [
   '/',
-  '/index.html',
   '/dist/output.css',
   '/src/input.css',
   '/styles/custom.css',
@@ -90,6 +89,7 @@ self.addEventListener('fetch', (event) => {
   const pathname = decodeURIComponent(requestUrl.pathname).toLowerCase();
   const bypassCache =
     pathname.endsWith('/staff.html') ||
+    pathname.endsWith('/staff') ||
     pathname.endsWith('/assets/mr. prosper muziya.jpg') ||
     pathname.endsWith('/assets/mr prosper muziya.jpg') ||
     pathname.endsWith('/assets/mr-prosper-muziya.jpg') ||
@@ -109,7 +109,7 @@ self.addEventListener('fetch', (event) => {
   if (isHtmlRequest(request)) {
     event.respondWith(
       networkFirst(request, PAGE_CACHE).catch(async () => {
-        return caches.match(request) || caches.match('/index.html');
+        return caches.match(request) || caches.match('/');
       })
     );
     return;

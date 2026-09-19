@@ -1,34 +1,26 @@
-﻿<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Primary Meta Tags -->
-  <title>Milestone School - Humble Grooming for a Bright Future | Kabwe, Zambia</title>
-  <meta name="title" content="Milestone School - Humble Grooming for a Bright Future | Kabwe, Zambia">
-  <meta name="description" content="Milestone School in Kabwe, Zambia offers quality education with a focus on holistic development. Discover our academic programs, extracurricular activities, and nurturing learning environment.">
-  <meta name="keywords" content="Milestone School, Kabwe, Zambia, education, primary school, secondary school, quality education, holistic development">
+<?php
+$pageTitle = 'Milestone School - Humble Grooming for a Bright Future | Kabwe, Zambia';
+$metaDescription = 'Milestone School in Kabwe, Zambia offers quality education with a focus on holistic development. Discover our academic programs, extracurricular activities, and nurturing learning environment.';
+$metaKeywords = 'Milestone School, Kabwe, Zambia, education, primary school, secondary school, quality education, holistic development';
+$ogTitle = 'Milestone School - Humble Grooming for a Bright Future';
+$ogDescription = 'Quality education in Kabwe, Zambia. Discover our academic programs, extracurricular activities, and nurturing learning environment.';
+$canonicalPath = '/';
+$activeNav = 'home';
+$bodyClass = 'home-page-bg bg-cover bg-center bg-no-repeat';
+$bodyStyle = '';
+$mainClass = '';
+$darkOverlay = '<div class="bg-black bg-opacity-70 h-full w-full rounded">';
+$afterSkipLink = <<<'HTML'
+  <!-- Preloader -->
+  <div id="preloader" role="status" aria-label="Loading page">
+    <div id="spinner"></div>
+  </div>
+HTML;
+$extraHead = <<<'HTML'
   <meta name="author" content="Milestone School">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://milestoneschool.education/">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://milestoneschool.education/">
-  <meta property="og:title" content="Milestone School - Humble Grooming for a Bright Future">
-  <meta property="og:description" content="Quality education in Kabwe, Zambia. Discover our academic programs, extracurricular activities, and nurturing learning environment.">
-  <meta property="og:image" content="https://milestoneschool.education/assets/logo.png">
   <meta property="og:site_name" content="Milestone School">
   <meta property="og:locale" content="en_US">
-  
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://milestoneschoolzambia/">
-  <meta property="twitter:title" content="Milestone School - Humble Grooming for a Bright Future">
-  <meta property="twitter:description" content="Quality education in Kabwe, Zambia. Discover our academic programs, extracurricular activities, and nurturing learning environment.">
-  <meta property="twitter:image" content="https://milestoneschool.education/assets/logo.png">
-  
+
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
   {
@@ -57,242 +49,12 @@
     ]
   }
   </script>
-  
-  <!-- Performance Optimizations -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="https://unpkg.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  
+
   <!-- Preload only truly critical resources -->
-  <link rel="preload" href="assets/logo.png" as="image">
-  
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"></noscript>
-  <link rel="stylesheet" href="./src/input.css">
-  <link href="./dist/output.css" rel="stylesheet">
-  <link href="./styles/custom.css" rel="stylesheet">
-  
-  <!-- Fonts with display swap for performance -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.ico">
-  
-  <!-- Sitemap -->
-  <link rel="sitemap" type="application/xml" href="sitemap.xml">
-  
-  <!-- Manifest for PWA -->
-  <link rel="manifest" href="manifest.json">
-  
-  <!-- Scripts -->
-  <script src="cookie-consent.js" defer></script>
-  <script src="scripts.js" defer></script>
-</head>
-
-<body class="home-page-bg bg-cover bg-center bg-no-repeat">
-
-  <!-- Skip to main content link for accessibility -->
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg">Skip to main content</a>
-
-  <!-- Preloader -->
-  <div id="preloader" role="status" aria-label="Loading page">
-    <div id="spinner"></div>
-  </div>
-
-  <div class="bg-black bg-opacity-70 h-full w-full rounded">
-
-    <!-- Enhanced Header with Glass Morphism -->
-<header class="sticky top-0 z-50 backdrop-blur-lg bg-white/90 supports-backdrop-blur:bg-white/95 shadow-soft" role="banner">
-  <nav class="container mx-auto px-4 sm:px-4 py-2" aria-label="Main navigation">
-    <div class="flex items-center justify-between">
-      
-      <!-- Logo with Animation -->
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <div class="relative">
-          <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-30 group-hover:opacity-50 transition duration-500"></div>
-          <img src="assets/logo.png" alt="Milestone School Logo" 
-                 class="relative h-12 w-12 object-contain transition-transform duration-700 group-hover:rotate-12 group-hover:scale-110"
-                 width="48" height="48"
-                 loading="eager"
-                 decoding="async">
-        </div>
-        <div class="flex flex-col">
-          <span class="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Milestone School
-          </span>
-          <span class="text-xs text-gray-500 tracking-wider font-medium">Humble Grooming for a Bright Future</span>
-        </div>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center space-x-0.5">
-        <a href="index.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Home page">
-          <i class="fas fa-home mr-1.8 text-xs" aria-hidden="true"></i>
-          Home
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="about.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to About Us page">
-          <i class="fas fa-info-circle mr-1.8 text-xs" aria-hidden="true"></i>
-          About Us
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="academics.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Academics page">
-          <i class="fas fa-graduation-cap mr-1.8 text-xs" aria-hidden="true"></i>
-          Academics
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="admissions.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Admissions page">
-          <i class="fas fa-user-plus mr-1.8 text-xs" aria-hidden="true"></i>
-          Admissions
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="events.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Events page">
-          <i class="fas fa-calendar-alt mr-1.8 text-xs" aria-hidden="true"></i>
-          Events
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="gallery.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Gallery page">
-          <i class="fas fa-images mr-1.8 text-xs" aria-hidden="true"></i>
-          Gallery
-          <span class="nav-underline"></span>
-        </a>
-        
-        <a href="staff.html" 
-           class="nav-link group relative px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary transition-colors duration-300"
-           aria-label="Navigate to Staff page">
-          <i class="fas fa-users mr-1.8 text-xs" aria-hidden="true"></i>
-          Staff
-          <span class="nav-underline"></span>
-        </a>
-        
-        <!-- CTA Button -->
-        <a href="contact.html" 
-           class="ml-3 px-5 py-2 text-sm bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full 
-                  shadow-hard hover:shadow-glow transform hover:-translate-y-0.5 transition-all duration-300 
-                  hover:from-orange-400 hover:to-secondary"
-           aria-label="Navigate to Contact page">
-          Contact
-        </a>
-      </div>
-
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" 
-              class="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
-              aria-label="Toggle mobile menu"
-              aria-expanded="false"
-              aria-controls="mobile-menu">
-        <i class="fas fa-bars text-xl" aria-hidden="true"></i>
-      </button>
-    </div>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" 
-         class="lg:hidden hidden mt-4 py-4 px-6 bg-white rounded-xl shadow-hard border border-gray-100 animate-slide-up"
-         aria-labelledby="mobile-menu-button">
-      <div class="space-y-2">
-        <a href="index.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-home w-5 text-center"></i>
-          <span>Home</span>
-        </a>
-        <a href="about.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-info-circle w-5 text-center"></i>
-          <span>About Us</span>
-        </a>
-        <a href="academics.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-graduation-cap w-5 text-center"></i>
-          <span>Academics</span>
-        </a>
-        <a href="admissions.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-user-plus w-5 text-center"></i>
-          <span>Admissions</span>
-        </a>
-        <a href="events.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-calendar-alt w-5 text-center"></i>
-          <span>Events</span>
-        </a>
-        <a href="gallery.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-images w-5 text-center"></i>
-          <span>Gallery</span>
-        </a>
-        <a href="staff.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-users w-5 text-center"></i>
-          <span>Staff</span>
-        </a>
-        <a href="contact.html" 
-           class="mobile-nav-link flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-primary/5 text-gray-700 hover:text-primary transition-colors">
-          <i class="fas fa-envelope w-5 text-center"></i>
-          <span>Contact</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<style>
-.nav-underline {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: linear-gradient(to right, #1a5f7a, #4fc3f7);
-  transition: all 300ms;
-}
-
-.nav-link:hover .nav-underline {
-  width: 75%;
-}
-
-.nav-link.active .nav-underline {
-  width: 75%;
-}
-
-.nav-link.active {
-  color: #1a5f7a;
-  font-weight: 600;
-}
-
-.mobile-nav-link.active {
-  background-color: rgba(26, 95, 122, 0.1);
-  color: #1a5f7a;
-  font-weight: 600;
-}
-</style>
-
-    <!-- Hero Section -->
-    <main id="main-content" role="main">
+  <link rel="preload" href="/assets/logo.png" as="image">
+HTML;
+require __DIR__ . '/../includes/header.php';
+?>
       <!-- Hero Section with Particles Background -->
 <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-primary via-teal-500 to-accent">
   <!-- Animated Background Elements -->
@@ -321,13 +83,13 @@
         </p>
         
         <div class="relative z-30 flex max-w-full flex-wrap items-center gap-2 lg:flex-nowrap lg:gap-3" data-hero-actions>
-          <a href="admissions.html" 
+          <a href="admissions" 
              class="inline-flex shrink-0 items-center whitespace-nowrap px-4 py-3 text-sm bg-white text-primary font-bold rounded-full shadow-hard hover:shadow-glow transform hover:-translate-y-1 transition-all duration-300 group">
             Start Your Journey
             <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
           </a>
           
-          <a href="about.html" 
+          <a href="about" 
              class="inline-flex shrink-0 items-center whitespace-nowrap px-4 py-3 text-sm bg-transparent border-2 border-white/50 text-white font-semibold rounded-full hover:bg-white/10 hover:border-white transition-all duration-300 group">
             <i class="fas fa-play-circle mr-2"></i>
             Explore Our Campus
@@ -501,7 +263,7 @@
               <h2 class="text-2xl font-bold text-primary mb-6 text-center">Our History</h2>
               <p class="text-gray-700 leading-relaxed mb-6">Founded in 2009, Milestone School began as a modest educational initiative with a clear vision...</p>
               <div class="flex justify-center">
-                <a href="about.html#history" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#history" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -517,7 +279,7 @@
               <h2 class="text-2xl font-bold text-primary mb-4 text-center">Our Mission</h2>
               <p class="text-gray-700 leading-relaxed mb-6">At Milestone School, our mission is to provide a holistic education that goes beyond academic success...</p>
               <div class="flex justify-center">
-                <a href="about.html#mission" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#mission" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -533,7 +295,7 @@
               <h2 class="text-2xl font-bold text-primary mb-4 text-center">Our Vision</h2>
               <p class="text-gray-700 leading-relaxed mb-6">We aspire to be a leading educational institution in Central Province, recognized for excellence and innovation...</p>
               <div class="flex justify-center">
-                <a href="about.html#vision" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#vision" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -558,7 +320,7 @@
                 </li>
               </ul>
               <div class="flex justify-center">
-                <a href="about.html#values" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#values" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -575,7 +337,7 @@
               <h2 class="text-3xl font-bold text-primary mb-6">Our Commitment</h2>
               <p class="text-gray-700 leading-relaxed text-lg mb-8 max-w-2xl mx-auto">Milestone School continues to build upon its legacy by integrating ICT education and modern teaching methodologies to prepare students for the future.</p>
               <div class="flex justify-center">
-                <a href="about.html#commitment" class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#commitment" class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -592,7 +354,7 @@
               <h2 class="text-3xl font-bold text-primary mb-6">Our Duties</h2>
               <p class="text-gray-700 leading-relaxed text-lg mb-8 max-w-2xl mx-auto">At Milestone School, our duties focus on creating a nurturing environment that fosters academic excellence and personal growth.</p>
               <div class="flex justify-center">
-                <a href="about.html#duties" class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about#duties" class="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -637,7 +399,7 @@
         Join us as we nurture minds, shape values, and prepare tomorrow's leaders today.
       </p>
         <div class="flex justify-center mb-6">
-                <a href="about.html" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="about" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Read More
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
@@ -743,11 +505,11 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4">
-                <a href="gallery.html?filter=literacy" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="gallery?filter=literacy" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   View Reading Gallery
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
-                 <a href="admissions.html" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
+                 <a href="admissions" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
                   Join Us Today
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                   </a>
@@ -792,14 +554,14 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4">
-                <a href="gallery.html?filter=lunch" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="gallery?filter=lunch" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   View Lunch Gallery
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
                   <a href="assets/2026 LUNCH MENU.pdf" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
                   View Menu
                   </a>
-                 <a href="admissions.html" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
+                 <a href="admissions" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
                   Join Us Today
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                   </a>
@@ -843,11 +605,11 @@
                 </p>
               
                 <div class="flex flex-wrap gap-4">
-                <a href="gallery.html?filter=transport" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="gallery?filter=transport" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   View Transport Gallery
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                 </a>
-                <a href="admissions.html" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
+                <a href="admissions" class="group/btn inline-flex items-center px-6 py-2 bg-gradient-to-r from-secondary to-orange-400 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ml-4">
                   Join Us Today
                   <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
                   </a>
@@ -899,7 +661,7 @@
               </div>
               <h2 class="text-2xl font-bold text-gray-800 mb-4">Overview of Curriculum</h2>
               <p class="text-gray-600 leading-relaxed mb-6">Our curriculum blends the Zambian system with Cambridge framework to provide a comprehensive education.</p>
-              <a href="academics.html#overview" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <a href="academics#overview" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Read More
                 <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
               </a>
@@ -911,7 +673,7 @@
               </div>
               <h2 class="text-2xl font-bold text-gray-800 mb-4">Teaching Methodologies</h2>
               <p class="text-gray-600 leading-relaxed mb-6">Teaching goes beyond textbooks combining active learning, experimentation, and problem-solving.</p>
-              <a href="academics.html#methodologies" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <a href="academics#methodologies" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Read More
                 <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
               </a>
@@ -923,7 +685,7 @@
               </div>
               <h2 class="text-2xl font-bold text-gray-800 mb-4">Extracurricular Activities</h2>
               <p class="text-gray-600 leading-relaxed mb-6">Our extracurricular program nurtures talents, builds confidence, and promotes teamwork.</p>
-              <a href="academics.html#activities" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <a href="academics#activities" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Read More
                 <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
               </a>
@@ -935,7 +697,7 @@
               </div>
               <h2 class="text-2xl font-bold text-gray-800 mb-4">Learning Resources</h2>
               <p class="text-gray-600 leading-relaxed mb-6">We provide a well-equipped learning environment supporting academic excellence and personal growth.</p>
-              <a href="academics.html#resources" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <a href="academics#resources" class="group/btn inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-teal-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Read More
                 <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
               </a>
@@ -947,7 +709,7 @@
               </div>
               <h2 class="text-3xl font-bold mb-4">ICT & STEM Programs</h2>
               <p class="text-white/90 leading-relaxed text-lg mb-8 max-w-2xl mx-auto">Our ICT and STEM programs prepare learners for the digital world and promote critical thinking, innovation, and problem-solving skills.</p>
-              <a href="academics.html#ict-stem" class="group/btn inline-flex items-center px-4 py-2 bg-white text-primary font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <a href="academics#ict-stem" class="group/btn inline-flex items-center px-4 py-2 bg-white text-primary font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                 Read More
                 <i class="fas fa-arrow-right ml-2 group-hover/btn:translate-x-1 transition-transform"></i>
               </a>
@@ -957,170 +719,5 @@
         </div>
       </section>
 
-    </main>  <!-- Footer Section -->
-  <section class="bg-gradient-to-br from-primary via-teal-600 to-accent text-white py-16 relative overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-    </div>
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="grid gap-8 lg:grid-cols-3 mb-12">
-        <div class="text-center md:text-left bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center justify-center md:justify-start mb-4">
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-              <i class="fas fa-map-marker-alt text-white text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold">Get in Touch</h2>
-          </div>
 
-          <div class="space-y-3 text-gray-100">
-            <p class="flex items-center justify-center md:justify-start">
-              <i class="fas fa-home mr-3 text-secondary"></i>
-              House No. 31 Holly Street, <span class="text-secondary font-semibold ml-1">Kabwe</span>, Zambia
-            </p>
-
-            <p class="flex items-center justify-center md:justify-start">
-              <i class="fas fa-phone mr-3 text-secondary"></i>
-              <span class="text-secondary font-semibold">+260 978 443 323</span>
-            </p>
-
-            <p class="flex items-center justify-center md:justify-start break-all md:break-normal">
-              <i class="fas fa-envelope mr-3 text-secondary"></i>
-              <a href="mailto:milestoneschool.education@gmail.com" class="text-secondary hover:text-yellow-300 transition-colors underline">
-                milestoneschool.education@gmail.com
-              </a>
-            </p>
-          </div>
-
-          <a href="https://wa.me/260972712158?text=Hello%20Milestone%20School%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:from-green-600 hover:to-green-700 hover:scale-105 transform transition-all duration-300">
-            <i class="fab fa-whatsapp text-xl"></i>
-            <span>Contact Us on WhatsApp</span>
-          </a>
-        </div>
-
-        <div class="text-center bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center justify-center mb-4">
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-              <i class="fas fa-file-download text-white text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold">Ready to Join Us?</h2>
-          </div>
-          <p class="text-gray-100 mb-6 text-lg">
-            Download our application form and begin your journey with Milestone School today.
-          </p>
-          <div class="flex flex-wrap items-center justify-center gap-3">
-            <a href="assets/miletone-application-form.pdf" download class="inline-flex items-center gap-3 rounded-full bg-white px-6 py-3 text-sm font-bold text-primary shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-glow">
-              <i class="fas fa-download"></i>
-              <span>Download Application Form</span>
-            </a>
-            <a href="contact.html" class="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/20">
-              <i class="fas fa-envelope"></i>
-              <span>Contact Us</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="text-center md:text-right max-w-none bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center justify-center md:justify-end mb-4">
-            <h2 class="text-2xl font-bold">Need Quick Help?</h2>
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center ml-3">
-              <i class="fas fa-question-circle text-white text-xl"></i>
-            </div>
-          </div>
-          <p class="text-gray-100 mb-6 text-lg">
-            Chat with our team directly on WhatsApp for admissions, enquiries, or general information. We're here to help!
-          </p>
-          <div class="flex items-center justify-center md:justify-end text-secondary">
-            <i class="fas fa-clock mr-2"></i>
-            <span class="font-semibold">Response within 24 hours</span>
-          </div>
-        </div>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-              <i class="fas fa-link text-white text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold">Quick Links</h2>
-          </div>
-          <div class="grid grid-cols-2 gap-3 text-gray-100">
-            <a href="index.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-home mr-2"></i>
-              <span>Home</span>
-            </a>
-            <a href="admissions.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-user-plus mr-2"></i>
-              <span>Admissions</span>
-            </a>
-            <a href="staff.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-users mr-2"></i>
-              <span>Staff</span>
-            </a>
-            <a href="events.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-calendar-alt mr-2"></i>
-              <span>Events</span>
-            </a>
-            <a href="gallery.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-images mr-2"></i>
-              <span>Gallery</span>
-            </a>
-            <a href="contact.html" class="flex items-center px-4 py-3 bg-white/10 rounded-lg transition-all duration-300 hover:bg-white/20 hover:text-secondary hover:translate-x-2 transform">
-              <i class="fas fa-envelope mr-2"></i>
-              <span>Contact</span>
-            </a>
-          </div>
-        </div>
-        <div class="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20">
-          <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mr-3">
-              <i class="fas fa-share-alt text-white text-xl"></i>
-            </div>
-            <h2 class="text-2xl font-bold">Follow Us</h2>
-          </div>
-          <p class="text-gray-100 mb-6">Stay connected with us on social media for updates, news, and events.</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/share/1CVBoLNmru/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" class="group w-14 h-14 bg-white/10 hover:bg-blue-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-facebook text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-            </a>
-            <a href="https://wa.me/260978443323" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp" class="group w-14 h-14 bg-white/10 hover:bg-green-500 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 transform">
-              <i class="fab fa-whatsapp text-white text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/20 pt-8">
-        <div class="flex flex-col md:flex-row items-center gap-6">
-          <p class="text-gray-100 text-sm">Accredited by:</p>
-          <div class="flex justify-center md:justify-start gap-6">
-            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-              <img src="https://www.exams-council.org.zm/wp-content/uploads/2025/03/cropped-cropped-ECZ-logo-27-05-2024-01-150x150.jpg" alt="Examination Council of Zambia" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
-            </div>
-            <div class="bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/20">
-              <img src="https://www.edu.gov.zm/wp-content/uploads/2024/06/edu-loogo2-e1718996036101.png" alt="Ministry of Education" class="h-10 opacity-90 hover:opacity-100 transition-opacity" width="40" height="40" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Footer Bottom -->
-  <div class="bg-gray-900 py-6 border-t border-gray-700">
-    <div class="container mx-auto px-6">
-      <p class="text-center text-gray-300 text-sm font-medium">
-        &copy; <span id="date"></span>
-        <a href="index.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">Milestone School</a>.
-        All Rights Reserved. Developed by
- <a href="muziya.html" class="text-teal-400 font-semibold hover:text-teal-300 transition duration-300">The Future</a>
-      </p>
-    </div>
-  </div>
-  <!-- Back to Top Button -->
-  <button id="scrollTopBtn" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-br from-primary to-teal-500 text-white rounded-full shadow-hard hover:shadow-glow hover:scale-110 transform transition-all duration-300 opacity-0 invisible flex items-center justify-center group" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up text-xl group-hover:-translate-y-1 transition-transform" aria-hidden="true"></i>
-  </button>
-
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-</body>
-</html>
-
+<?php require __DIR__ . '/../includes/footer.php'; ?>

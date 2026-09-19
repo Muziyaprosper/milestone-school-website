@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ? '<i class="fas fa-user-graduate mr-1.8 text-xs" aria-hidden="true"></i>Student Portal<span class="nav-underline"></span>'
         : 'Student Portal';
 
-      const contactButton = desktopNav.querySelector('a[href="contact.html"]');
+      const contactButton = desktopNav.querySelector('a[href="contact"]');
       if (contactButton && desktopNav.className.includes('lg:flex')) {
         desktopNav.insertBefore(portalLink, contactButton);
       } else {
@@ -709,27 +709,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Active Navigation Link Highlighting
-  const currentPage = window.location.pathname.split('/').pop();
-  const navParentPage = document.body?.dataset?.navParent || '';
+  const normalizePage = (p) => {
+    if (!p || p === 'index' || p === 'index.html') return '';
+    return p.replace(/\.html$/i, '');
+  };
+  const currentPage = normalizePage(window.location.pathname.split('/').pop());
+  const navParentPage = normalizePage(document.body?.dataset?.navParent || '');
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-  
+
   navLinks.forEach(link => {
     const rawHref = link.getAttribute('href');
     if (!rawHref) return;
 
-    let linkPage = rawHref;
+    let linkPage;
     try {
       const resolvedUrl = new URL(rawHref, window.location.href);
       if (resolvedUrl.origin !== window.location.origin) return;
-      linkPage = resolvedUrl.pathname.split('/').pop() || 'index.html';
+      linkPage = normalizePage(resolvedUrl.pathname.split('/').pop());
     } catch (error) {
       return;
     }
 
-    if (linkPage === currentPage ||
-        (navParentPage && linkPage === navParentPage) ||
-        (currentPage === '' && linkPage === 'index.html') ||
-        (currentPage === 'index.html' && linkPage === 'index.html')) {
+    if (linkPage === currentPage || (navParentPage && linkPage === navParentPage)) {
       link.classList.add('active');
     }
   });

@@ -5,7 +5,7 @@
   const COOKIE_CONSENT_KEY = 'milestone_cookie_consent';
   const COOKIE_PREFERENCES_KEY = 'milestone_cookie_preferences';
   const COOKIE_EXPIRY_DAYS = 365;
-  const PRIVACY_PAGE = 'privacy.html';
+  const PRIVACY_PAGE = 'privacy';
 
   // Cookie utility functions
   function setCookie(name, value, days) {

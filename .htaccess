@@ -1,10 +1,29 @@
 # Milestone School Website - Apache Configuration
 # Caching and Performance Optimization
 
-# Enable Rewrite Engine
+# Clean URLs via a single PHP front controller (index.php)
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
+
+  # Canonicalize: /index or /index.html -> /
+  RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+  RewriteRule ^ / [R=301,L]
+
+  # Canonicalize: leftover requests for /page.html -> /page (old bookmarks/search
+  # results), root-level only so /assets/* files are left untouched
+  RewriteCond %{THE_REQUEST} \s/+([^./\s]+)\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Page templates and layout partials are only meant to be included by
+  # index.php, never requested directly
+  RewriteRule ^(includes|pages)/ - [F,L]
+
+  # Real files/directories (assets, dist, src, styles, etc.) are served as-is;
+  # everything else is routed through the front controller
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.php [L]
 </IfModule>
 
 # Browser Caching
@@ -66,8 +85,8 @@
     Header set Cache-Control "max-age=604800, public"
   </FilesMatch>
   
-  # Don't cache HTML
-  <FilesMatch "\.(html|htm)$">
+  # Don't cache dynamically-routed pages
+  <FilesMatch "\.(html|htm|php)$">
     Header set Cache-Control "no-cache, no-store, must-revalidate"
     Header set Pragma "no-cache"
     Header set Expires "0"

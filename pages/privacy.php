@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy and Cookie Notice - Milestone School</title>
   <meta name="description" content="Read the Milestone School privacy and cookie notice to understand how this website stores essential preferences and handles enquiries.">
-  <link rel="canonical" href="https://milestoneschool.education/privacy.html">
-  <link rel="stylesheet" href="./src/input.css">
-  <link href="./dist/output.css" rel="stylesheet">
+  <link rel="canonical" href="https://milestoneschool.education/privacy">
+  <link rel="stylesheet" href="/src/input.css">
+  <link href="/dist/output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <script src="scripts.js" defer></script>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script src="/scripts.js" defer></script>
 </head>
 <body class="bg-slate-50 text-slate-800">
   <main class="container mx-auto max-w-4xl px-4 py-16 sm:px-6">
-    <a href="index.html" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
+    <a href="/" class="inline-flex items-center text-sm font-semibold text-primary hover:underline">
       <i class="fas fa-arrow-left mr-2"></i> Back to Home
     </a>
     <section class="mt-8 rounded-[2rem] bg-white p-8 shadow-hard">
