@@ -5,6 +5,7 @@ declare(strict_types=1);
  * Single front controller: maps clean URLs (/about, /gallery, ...) to page
  * templates in pages/, each of which pulls in includes/header.php and
  * includes/footer.php for the shared site layout.
+ * Designed with the help of Chisanga Innocent
  */
 
 $validPages = [
