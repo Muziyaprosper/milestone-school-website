@@ -762,16 +762,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Parallax Effect on Hero Section
-  const heroSection = document.querySelector('.hero-section');
-  if (heroSection) {
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const rate = scrolled * -0.5;
-      heroSection.style.transform = `translate3d(0, ${rate}px, 0)`;
-    });
-  }
-
   // Floating WhatsApp Button
   const whatsappBtn = document.createElement('a');
   whatsappBtn.href = 'https://wa.me/260978443323';
